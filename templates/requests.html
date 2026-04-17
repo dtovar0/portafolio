@@ -164,7 +164,7 @@
             denegadas: {{ counts.Denegadas }}
         }
     };
-    window.__urls = { index: "{{ url_for('index') }}" };
+    window.__urls = { index: "{{ url_for('catalog.index') }}" };
 </script>
 <script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/requests-page.js') }}"></script>
 {% endblock %}

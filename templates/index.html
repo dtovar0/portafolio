@@ -83,7 +83,7 @@
         <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
             <div class="card-header border-none d-flex justify-between items-center mb-075">
                 <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Usuarios por Plataforma</h2>
-                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('platforms_list') }}" data-tooltip="Más detalle">
+                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('catalog.platforms_list') }}" data-tooltip="Más detalle">
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -96,7 +96,7 @@
         <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
             <div class="card-header border-none d-flex justify-between items-center mb-075">
                 <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Usuarios por Área</h2>
-                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('areas_list') }}" data-tooltip="Más detalle">
+                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('admin.areas_list') }}" data-tooltip="Más detalle">
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -122,7 +122,7 @@
         <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
             <div class="card-header border-none d-flex justify-between items-center mb-075">
                 <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Plataformas Más Visitadas</h2>
-                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('platforms_list') }}" data-tooltip="Más detalle">
+                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('catalog.platforms_list') }}" data-tooltip="Más detalle">
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -199,7 +199,7 @@
             accentColor: '{{ portal_settings.portal_logo_bg or "#6366f1" }}'
         },
         urls: {
-            home: "{{ url_for('index') }}"
+            home: "{{ url_for('catalog.index') }}"
         }
     };
 </script>

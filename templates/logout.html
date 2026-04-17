@@ -14,7 +14,7 @@
         })();
     </script>
     <!-- Automatic Redirect -->
-    <meta http-equiv="refresh" content="4;url={{ url_for('login') }}">
+    <meta http-equiv="refresh" content="4;url={{ url_for('auth.login') }}">
 </head>
 <body>
     <div class="logout-container">
@@ -29,7 +29,7 @@
             <span>Redirigiendo al login en <span id="countdown">4</span>s...</span>
         </div>
 
-        <a href="{{ url_for('login') }}" class="btn-return">Ir al login ahora</a>
+        <a href="{{ url_for('auth.login') }}" class="btn-return">Ir al login ahora</a>
     </div>
 
     <script nonce="{{ csp_nonce() }}">

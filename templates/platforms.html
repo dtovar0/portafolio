@@ -274,7 +274,7 @@
     window.__platformData = {{ grouped_platforms|tojson }};
     window.__areaData = {{ area_list|tojson }};
     window.__allUsers = {{ all_users|tojson }};
-    window.__urls = { index: "{{ url_for('index') }}" };
+    window.__urls = { index: "{{ url_for('catalog.index') }}" };
 </script>
 <script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/platforms-page.js') }}"></script>
 {% endblock %}

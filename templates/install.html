@@ -161,7 +161,7 @@
                 Redirigiendo a la plataforma en <span id="countdown" style="font-weight: 800; color: var(--primary); font-size: 1.1rem;">5</span> segundos...
             </div>
 
-            <a href="{{ url_for('login') }}" class="btn btn-next" style="text-decoration: none; width: 100%;">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-next" style="text-decoration: none; width: 100%;">
                 Acceder ahora <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -172,7 +172,7 @@
                 document.getElementById('countdown').textContent = count;
                 if (count <= 0) {
                     clearInterval(timer);
-                    window.location.href = "{{ url_for('login') }}";
+                    window.location.href = "{{ url_for('auth.login') }}";
                 }
             }, 1000);
         </script>

@@ -69,7 +69,7 @@
                         <span class="catalog-dropdown-label">Identificado como</span>
                         <span class="catalog-dropdown-email">{% if current_user %}{{ current_user.email }}{% else %}admin@nexus.local{% endif %}</span>
                     </div>
-                    <button data-action="navigate" data-url="{{ url_for('logout') }}" class="catalog-dropdown-item catalog-dropdown-logout w-full text-left">
+                    <button data-action="navigate" data-url="{{ url_for('auth.logout') }}" class="catalog-dropdown-item catalog-dropdown-logout w-full text-left">
                         Cerrar Sesión
                     </button>
                 </div>
