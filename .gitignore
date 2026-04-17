@@ -1,0 +1,10 @@
+# === INICIO GITIGNORE ===
+venv/
+__pycache__/
+*.pyc
+instance/
+.env
+secret.key
+config.conf
+.gemini/
+# === FIN GITIGNORE ===
