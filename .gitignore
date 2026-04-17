@@ -7,4 +7,5 @@ instance/
 secret.key
 config.conf
 .gemini/
+UI_GUIDE.md
 # === FIN GITIGNORE ===

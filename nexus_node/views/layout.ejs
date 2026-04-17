@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title != 'undefined' ? title : settings.portal_name %></title>
+    
+    <script>
+        // Init theme immediately
+        (function() {
+            const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- UI Kit -->
+    <link rel="stylesheet" href="/static/css/style.css?v=110">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <% const _activePage = typeof activePage !== 'undefined' ? activePage : ''; %>
+    <% if (['platforms', 'areas'].includes(_activePage)) { %>
+    <link rel="stylesheet" href="/static/css/platforms.css?v=31">
+    <% } %>
+    <% if (_activePage === 'catalog') { %>
+    <link rel="stylesheet" href="/static/css/catalog.css?v=2">
+    <% } %>
+    <% if (_activePage === 'requests') { %>
+    <link rel="stylesheet" href="/static/css/requests.css?v=2">
+    <% } %>
+    <% if (['general', 'notifications', 'auth'].includes(_activePage)) { %>
+    <link rel="stylesheet" href="/static/css/settings.css?v=2">
+    <% } %>
+    <% if (_activePage === 'general') { %>
+    <link rel="stylesheet" href="/static/css/general.css?v=10">
+    <% } %>
+    
+    <%- typeof style != 'undefined' ? style : '' %>
+
+    <style>
+        :root {
+            --primary-color: <%= settings.portal_logo_bg || '#6366f1' %>;
+            --primary-hover: <%= settings.portal_logo_bg || '#4f46e5' %>;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <% const _isCatalogLayout = _activePage === 'catalog'; %>
+        <!-- Sidebar -->
+        <% if (!_isCatalogLayout) { %>
+        <aside class="sidebar" id="sidebar">
+            <script>
+                (function() {
+                    const state = localStorage.getItem('sidebarState');
+                    if (state === 'collapsed') {
+                        const s = document.currentScript.parentElement;
+                        s.style.transition = 'none';
+                        s.classList.add('collapsed');
+                        setTimeout(() => { s.style.transition = ''; }, 0);
+                    }
+                })();
+            </script>
+            <div class="sidebar-logo">
+                <div class="logo-icon" style="background: <%= settings.portal_logo_bg %>; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                    <% if (settings.portal_logo_type === 'icon') { %>
+                        <i class="fas <%= settings.portal_icon %>" style="color: <%= settings.portal_icon_color %>;"></i>
+                    <% } else if (settings.portal_logo_url) { %>
+                        <img src="<%= settings.portal_logo_url %>" style="width: 28px; height: 28px; object-fit: contain;">
+                    <% } else { %>
+                        <i class="fas fa-cube" style="color: white;"></i>
+                    <% } %>
+                </div>
+                <div class="line-height-11">
+                    <span class="fw-700 d-block text-white" style="font-size: 1.1rem;"><%= settings.portal_name %></span>
+                </div>
+            </div>
+
+            <div class="sidebar-section-label">Inicio</div>
+            <nav class="sidebar-nav">
+                <a href="/" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'dashboard' ? 'active' : '' %>" data-tooltip="Dashboard">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/platforms" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'platforms' ? 'active' : '' %>" data-tooltip="Plataformas">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1 -2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0 -1.51 1z"></path></svg>
+                    <span>Plataformas</span>
+                </a>
+                <a href="/requests" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'requests' ? 'active' : '' %>" data-tooltip="Solicitudes">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                    <span>Solicitudes</span>
+                    <% if (typeof pending_requests_count !== 'undefined' && pending_requests_count > 0) { %>
+                    <span class="count-badge"><%= pending_requests_count %></span>
+                    <% } %>
+                </a>
+            </nav>
+
+            <div class="sidebar-section-label">Catálogo</div>
+            <nav class="sidebar-nav">
+                <% if (user && user.role === 'Administrador') { %>
+                <a href="/areas" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'areas' ? 'active' : '' %>" data-tooltip="Áreas">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <span>Áreas</span>
+                </a>
+                <a href="/users" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'users' ? 'active' : '' %>" data-tooltip="Usuarios">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span>Usuarios</span>
+                </a>
+                <% } else { %>
+                <a href="/catalogo" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'catalog' ? 'active' : '' %>" data-tooltip="Mi Catálogo">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M12 4h9"></path><path d="M4 9h16"></path><path d="M4 15h16"></path></svg>
+                    <span>Mi Catálogo</span>
+                </a>
+                <% } %>
+            </nav>
+
+            <% if (user && user.role === 'Administrador') { %>
+            <div class="sidebar-section-label">Sistema</div>
+            <nav class="sidebar-nav">
+                <a href="/admin/general" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'general' ? 'active' : '' %>" data-tooltip="General">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82A1.65 1.65 0 0 0 3 14H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    <span>General</span>
+                </a>
+                <a href="/admin/notifications" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'notifications' ? 'active' : '' %>" data-tooltip="Notificaciones">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    <span>Notificaciones</span>
+                </a>
+                <a href="/admin/auth" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'auth' ? 'active' : '' %>" data-tooltip="Autenticación">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>Autenticación</span>
+                </a>
+                <a href="/admin/audit" class="nav-item <%= typeof activePage != 'undefined' && activePage == 'audit' ? 'active' : '' %>" data-tooltip="Auditoría">
+                    <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 8 12 12 15 15"></polyline><circle cx="12" cy="12" r="10"></circle></svg>
+                    <span>Auditoría</span>
+                </a>
+            </nav>
+            <% } %>
+
+            <div class="flex-1"></div>
+
+            <div class="user-widget">
+                <div class="user-profile-trigger" data-action="toggle-dropdown" data-target="userDropdown">
+                    <div class="avatar" style="background: var(--primary-color); color: white;">
+                        <%= (user && user.name) ? user.name.substring(0, 2).toUpperCase() : 'AD' %>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name"><%= (user && user.name) ? user.name : 'Administrador' %></span>
+                        <span class="user-role"><%= user ? user.role : 'Admin' %></span>
+                    </div>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="border-bottom-subtle mb-05" style="padding: 0.5rem 0.75rem;">
+                        <span class="fs-xs text-muted d-block">Identificado como</span>
+                        <span class="fs-sm fw-600"><%= (user && user.email) ? user.email : 'admin@nexus.local' %></span>
+                    </div>
+                    <a href="/logout" class="dropdown-item logout">Cerrar Sesión</a>
+                </div>
+            </div>
+        </aside>
+        <% } %>
+
+        <div class="main-content-wrapper <%= _isCatalogLayout ? 'no-sidebar' : '' %>">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <% if (_isCatalogLayout) { %>
+                <div class="top-left">
+                    <div class="d-flex items-center gap-1">
+                        <div class="logo-icon d-flex items-center justify-center rounded-md catalog-brand-logo" style="background: <%= settings.portal_logo_bg || '#6366f1' %>;">
+                            <% if (settings.portal_logo_type === 'image' && settings.portal_logo_url) { %>
+                                <img src="<%= settings.portal_logo_url %>" class="catalog-brand-logo-image">
+                            <% } else if (settings.portal_logo_type === 'icon') { %>
+                                <i class="fas <%= settings.portal_icon || 'fa-box' %> fs-md" style="color: <%= settings.portal_icon_color || '#ffffff' %>;"></i>
+                            <% } else { %>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="<%= settings.portal_icon_color || '#ffffff' %>" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"></path><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"></path></svg>
+                            <% } %>
+                        </div>
+                        <span class="font-outfit fw-700 text-primary catalog-brand-name"><%= settings.portal_name || 'Nexus Access' %></span>
+                    </div>
+                </div>
+                <div class="top-right">
+                    <div class="d-flex items-center catalog-topbar-right">
+                        <button class="hamburger-btn" id="themeToggle" data-action="catalog-toggle-theme" title="Cambiar tema">
+                            <svg class="sun-icon catalog-theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            <svg class="moon-icon catalog-theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </button>
+
+                        <div class="catalog-divider"></div>
+
+                        <div class="dashboard-controls d-flex items-center gap-025 catalog-grid-controls">
+                            <button class="grid-btn active" data-grid="3" title="Vista 3x2">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="6" height="7" rx="1"></rect><rect x="9" y="4" width="6" height="7" rx="1"></rect><rect x="16" y="4" width="6" height="7" rx="1"></rect><rect x="2" y="13" width="6" height="7" rx="1"></rect><rect x="9" y="13" width="6" height="7" rx="1"></rect><rect x="16" y="13" width="6" height="7" rx="1"></rect></svg>
+                            </button>
+                            <button class="grid-btn" data-grid="4" title="Vista 4x2">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="4" height="18" rx="1"></rect><rect x="8" y="3" width="4" height="18" rx="1"></rect><rect x="14" y="3" width="4" height="18" rx="1"></rect><rect x="20" y="3" width="4" height="18" rx="1"></rect></svg>
+                            </button>
+                            <button class="grid-btn" data-grid="6" title="Vista 6x2">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h2v18H2zM6 3h2v18H6zM10 3h2v18H10zM14 3h2v18H14zM18 3h2v18H18zM22 3h2v18H22z"></path></svg>
+                            </button>
+                        </div>
+
+                        <div class="catalog-divider"></div>
+
+                        <button class="btn-action-edit d-flex items-center gap-05 border-subtle fw-600 catalog-edit-mode-btn" id="edit-mode-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="lock-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <span id="edit-text">Modo Edición</span>
+                        </button>
+
+                        <div class="user-widget pos-relative catalog-user-widget">
+                            <button type="button" class="user-profile-trigger catalog-user-trigger" id="user-profile-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown">
+                                <div class="avatar catalog-user-avatar"><%= (user && user.name) ? user.name.substring(0, 2).toUpperCase() : 'AD' %></div>
+                                <div class="user-info catalog-user-info">
+                                    <span class="user-name"><%= (user && user.name) ? user.name : 'Administrador' %></span>
+                                    <span class="user-role"><%= user ? user.role : 'User' %></span>
+                                </div>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="catalog-user-dropdown" id="userDropdown">
+                                <div class="catalog-dropdown-surface">
+                                    <div class="catalog-dropdown-section">
+                                        <span class="catalog-dropdown-label">Identificado como</span>
+                                        <span class="catalog-dropdown-email"><%= (user && user.email) ? user.email : 'admin@nexus.local' %></span>
+                                    </div>
+                                    <a href="/logout" class="catalog-dropdown-item catalog-dropdown-logout">Cerrar Sesión</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } else { %>
+                <div class="top-left">
+                    <button class="hamburger-btn" data-action="toggle-sidebar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    <div class="breadcrumbs">
+                        <%- typeof breadcrumbs != 'undefined' ? breadcrumbs : '<span class="breadcrumb-item active">Inicio</span>' %>
+                    </div>
+                </div>
+                <div class="top-right">
+                    <div class="d-flex align-items-center gap-1">
+                        <button class="hamburger-btn" id="themeToggle" data-action="toggle-theme" title="Cambiar tema">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <div class="search-container pos-relative">
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="globalSearchInput" class="js-global-search" placeholder="Buscar plataformas o usuarios..." autocomplete="off">
+                            <div id="globalSearchResults" class="search-results-dropdown"></div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </header>
+
+            <!-- Main Layout -->
+            <main class="main-layout">
+                <%- body %>
+            </main>
+        </div>
+    </div>
+
+    <!-- Global Confirmation Modal -->
+    <div id="confirmModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage" aria-hidden="true">
+        <div class="modal-content modal-sm text-center pos-relative">
+            <button type="button" class="btn-close-modal pos-absolute" aria-label="Cerrar modal" data-action="close-modal" data-target="confirmModal" style="top: 1.5rem; right: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="d-flex justify-center mb-15" style="color: #f43f5e;">
+                <div class="p-1 rounded-full" style="background: rgba(244, 63, 94, 0.1);">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                </div>
+            </div>
+            <h3 id="confirmTitle" class="font-outfit fs-xl fw-700 mb-075 text-primary">¿Estás seguro?</h3>
+            <p id="confirmMessage" class="text-muted mb-2" style="font-size: 0.95rem; line-height: 1.5;">Esta acción eliminará de forma permanente los registros seleccionados.</p>
+            <div class="d-flex gap-1 justify-center">
+                <button class="btn btn-ghost" data-action="close-modal" data-target="confirmModal" style="min-width: 120px;">Cancelar</button>
+                <button id="confirmBtn" class="btn btn-primary fw-600" style="background: #f43f5e; color: white; border: none; min-width: 120px;">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        window.__contexto = {
+            urls: {
+                home: '/'
+            }
+        };
+    </script>
+    <script src="/static/js/script.js?v=3"></script>
+    <script src="/static/js/base-ui.js"></script>
+    <%- typeof script != 'undefined' ? script : '' %>
+</body>
+</html>

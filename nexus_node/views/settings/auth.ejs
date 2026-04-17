@@ -1,0 +1,85 @@
+<div class="settings-page-container w-full" style="margin-inline: auto;">
+    <div class="settings-tabs d-flex gap-1 border-bottom-subtle">
+        <button class="settings-tab active" data-action="switch-tab" data-tab="ldapTab">
+            <i class="fas fa-network-wired" style="font-size: 1.1rem;"></i> LDAP / Active Directory
+        </button>
+    </div>
+
+    <form id="authSettingsForm" class="settings-form" data-premium-validate novalidate>
+        <div id="ldapTab" class="tab-content active">
+            <div class="settings-card settings-card-box">
+                <div class="settings-section-header">
+                    <div class="d-flex justify-between items-center w-full">
+                        <h3 class="settings-title-lg">Integración de Directorio</h3>
+                        <div class="d-flex items-center gap-1">
+                            <button type="button" id="btnTestLDAP" class="btn btn-action-test" data-action="test-ldap">
+                                <i class="fas fa-network-wired"></i> Probar Conexión
+                            </button>
+                            <div class="v-divider"></div>
+                            <button type="submit" class="btn btn-action-new" data-action="save-auth" style="height: 42px; padding: 0 1.5rem;">
+                                <i class="fas fa-save" style="font-size: 1.1rem;"></i>
+                                <span>Guardar Cambios</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid grid-2col gap-15 mb-2">
+                    <div class="settings-toggle-card">
+                        <div class="toggle-card-info"><label for="ldap_enabled">Habilitar LDAP</label></div>
+                        <div class="toggle-card-action">
+                            <label class="toggle-switch-ios">
+                                <input type="checkbox" id="ldap_enabled" name="ldap_enabled" class="js-ldap-master-toggle" <%= settings.ldap_enabled ? 'checked' : '' %>>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+
+                <div class="section-label"><i class="fas fa-network-wired"></i> CONEXIÓN</div>
+                <div class="d-grid grid-2col gap-15">
+                    <div class="form-group"><label class="form-label">SERVIDOR LDAP</label><div class="input-with-icon"><i class="fas fa-server"></i><input type="text" name="ldap_server" class="form-control js-ldap-input field-tech" value="<%= settings.ldap_server || '' %>" placeholder="ldap.empresa.local" required></div></div>
+                    <div class="d-grid grid-2col gap-15">
+                        <div class="form-group"><label class="form-label">PUERTO</label><div class="input-with-icon"><i class="fas fa-plug"></i><input type="number" name="ldap_port" class="form-control js-ldap-input no-spin" value="<%= settings.ldap_port || '389' %>" min="1" max="65535" required></div></div>
+                        <div class="form-group">
+                            <label class="form-label">SSL/TLS</label>
+                            <div class="settings-toggle-card" style="margin-top: 0; padding: 0.5rem 1rem; height: 46px;">
+                                <div class="toggle-card-info" style="flex: 1;"><span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">ACTIVAR</span></div>
+                                <div class="toggle-card-action">
+                                    <label class="toggle-switch-ios" style="transform: scale(0.85);">
+                                        <input type="checkbox" name="ldap_use_ssl" class="js-ldap-input" <%= settings.ldap_use_ssl ? 'checked' : '' %>>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-label mt-2"><i class="fas fa-user-shield"></i> CREDENCIALES DE ACCESO</div>
+                <div id="credentialsGrid" class="d-grid grid-2col gap-15">
+                    <div class="form-group"><label class="form-label">USUARIO</label><div class="input-with-icon"><i class="fas fa-user"></i><input type="text" name="ldap_user_dn" class="form-control js-ldap-input field-tech" value="<%= settings.ldap_user_dn || '' %>" placeholder="cn=admin,dc=empresa,dc=local" required></div></div>
+                    <div class="form-group"><label class="form-label">CONTRASEÑA</label><div class="input-with-icon"><i class="fas fa-lock"></i><input type="password" name="ldap_password" class="form-control js-ldap-input" placeholder="••••••••••••" autocomplete="new-password"></div></div>
+                </div>
+
+                <div class="section-label mt-2"><i class="fas fa-filter"></i> FILTRADO DE ACCESO</div>
+                <div class="d-grid grid-2col gap-15">
+                    <div class="form-group"><label class="form-label">BASE DN</label><div class="input-with-icon"><i class="fas fa-folder-tree"></i><input type="text" name="ldap_base_dn" class="form-control js-ldap-input field-tech" value="<%= settings.ldap_base_dn || '' %>" placeholder="dc=empresa,dc=local" required></div></div>
+                    <div class="form-group"><label class="form-label">ATRIBUTO DE ACCESO</label><div class="input-with-icon"><i class="fas fa-filter"></i><input type="text" name="ldap_user_attribute" class="form-control js-ldap-input field-tech" value="<%= settings.ldap_user_attribute || 'uid' %>" placeholder="uid / sAMAccountName"></div></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    window.__datos = {
+        urls: {
+            update: '/admin/update-auth',
+            test: '/admin/test-ldap',
+            home: '/'
+        }
+    };
+</script>
+<script src="/static/js/auth-page.js"></script>

@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve Nexus Access
+After=network.target
+
+[Service]
+User={user}
+Group=www-data
+WorkingDirectory={path}
+Environment="PATH={path}/venv/bin"
+ExecStart={path}/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 --access-logfile {path}/logs/access.log --error-logfile {path}/logs/error.log wsgi:app
+
+[Install]
+WantedBy=multi-user.target

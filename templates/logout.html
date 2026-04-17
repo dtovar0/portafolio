@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión Cerrada | {{ portal_settings.portal_name or 'Portal TI' }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logout.css') }}">
+    <script nonce="{{ csp_nonce() }}">
+        // Init theme immediately to prevent flashing
+        (function() {
+            const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <!-- Automatic Redirect -->
+    <meta http-equiv="refresh" content="4;url={{ url_for('login') }}">
+</head>
+<body>
+    <div class="logout-container">
+        <div class="success-icon-box">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <h1>Sesión cerrada correctamente</h1>
+        <p>Tu acceso ha sido finalizado de forma segura. Gracias por usar <strong>{{ portal_settings.portal_name or 'Nexus Access' }}</strong>.</p>
+        
+        <div class="redirect-status">
+            <div class="spinner"></div>
+            <span>Redirigiendo al login en <span id="countdown">4</span>s...</span>
+        </div>
+
+        <a href="{{ url_for('login') }}" class="btn-return">Ir al login ahora</a>
+    </div>
+
+    <script nonce="{{ csp_nonce() }}">
+        let seconds = 4;
+        const display = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            seconds--;
+            display.innerText = seconds;
+            if (seconds <= 0) clearInterval(interval);
+        }, 1000);
+    </script>
+</body>
+</html>

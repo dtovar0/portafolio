@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Personal | {{ portal_settings.portal_name or 'Nexus Access' }}{% endblock %}
+
+{% block global_confirm_modal %}{% endblock %}
+
+{% block sidebar %}{% endblock %}
+{% block top_left %}
+    <div class="d-flex items-center gap-1">
+        <div class="logo-icon d-flex items-center justify-center rounded-md catalog-brand-logo" style="background: {{ portal_settings.portal_logo_bg or '#6366f1' }};">
+            {% if portal_settings.portal_logo_type == 'image' and portal_settings.portal_logo_url %}
+                <img src="{{ portal_settings.portal_logo_url }}" class="catalog-brand-logo-image">
+            {% elif portal_settings.portal_logo_type == 'icon' %}
+                <i class="fas {{ portal_settings.portal_icon or 'fa-box' }} fs-md" style="color: {{ portal_settings.portal_icon_color or '#ffffff' }};"></i>
+            {% else %}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{ portal_settings.portal_icon_color or '#ffffff' }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"></path><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"></path></svg>
+            {% endif %}
+        </div>
+        <span class="font-outfit fw-700 text-primary catalog-brand-name">{{ portal_settings.portal_name or 'Nexus Access' }}</span>
+    </div>
+{% endblock %}
+
+{% block top_bar_right %}
+    <div class="d-flex items-center catalog-topbar-right">
+        <!-- Theme Toggle -->
+        <button class="hamburger-btn" id="themeToggle" data-action="catalog-toggle-theme" title="Cambiar tema">
+            <svg class="sun-icon catalog-theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon-icon catalog-theme-icon-hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <div class="catalog-divider"></div>
+
+        <!-- Grid Selectors -->
+        <div class="dashboard-controls d-flex items-center gap-025 catalog-grid-controls">
+            <button class="grid-btn active" data-action="switch-grid" data-grid="3" title="Vista 3x2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="6" height="7" rx="1"></rect><rect x="9" y="4" width="6" height="7" rx="1"></rect><rect x="16" y="4" width="6" height="7" rx="1"></rect><rect x="2" y="13" width="6" height="7" rx="1"></rect><rect x="9" y="13" width="6" height="7" rx="1"></rect><rect x="16" y="13" width="6" height="7" rx="1"></rect></svg>
+            </button>
+            <button class="grid-btn" data-action="switch-grid" data-grid="4" title="Vista 4x2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="4" height="18" rx="1"></rect><rect x="8" y="3" width="4" height="18" rx="1"></rect><rect x="14" y="3" width="4" height="18" rx="1"></rect><rect x="20" y="3" width="4" height="18" rx="1"></rect></svg>
+            </button>
+            <button class="grid-btn" data-action="switch-grid" data-grid="6" title="Vista 6x2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h2v18H2zM6 3h2v18H6zM10 3h2v18H10zM14 3h2v18H14zM18 3h2v18H18zM22 3h2v18H22z"></path></svg>
+            </button>
+        </div>
+        
+        <div class="catalog-divider"></div>
+
+        <!-- Edit Mode -->
+        <button class="btn-action-edit d-flex items-center gap-05 border-subtle fw-600 catalog-edit-mode-btn" data-action="toggle-edit-mode" id="edit-mode-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="lock-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span id="edit-text">Modo Edición</span>
+        </button>
+
+        <!-- User Dropdown -->
+        <div class="user-widget pos-relative catalog-user-widget">
+            <button type="button" class="user-profile-trigger catalog-user-trigger" data-action="toggle-dropdown" data-target="userDropdown" aria-haspopup="true">
+                <div class="avatar catalog-user-avatar">
+                    {% if current_user %}{{ current_user.name[:2].upper() }}{% else %}AD{% endif %}
+                </div>
+                <div class="user-info catalog-user-info">
+                    <span class="user-name">{% if current_user %}{{ current_user.name }}{% else %}Administrador{% endif %}</span>
+                    <span class="user-role">{% if current_user %}{{ current_user.role }}{% else %}User{% endif %}</span>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="catalog-user-dropdown" id="userDropdown">
+                <div class="catalog-dropdown-surface">
+                    <div class="catalog-dropdown-section">
+                        <span class="catalog-dropdown-label">Identificado como</span>
+                        <span class="catalog-dropdown-email">{% if current_user %}{{ current_user.email }}{% else %}admin@nexus.local{% endif %}</span>
+                    </div>
+                    <button data-action="navigate" data-url="{{ url_for('logout') }}" class="catalog-dropdown-item catalog-dropdown-logout w-full text-left">
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block wrapper_class %}no-sidebar{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/catalog.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="catalog-container">
+    <!-- Navigation Tabs -->
+    <div class="dashboard-tabs">
+        <button class="tab-item" data-action="switch-category-tab" data-tab="fav" data-icon="heart">
+            <span class="tab-icon"></span>Favoritos
+        </button>
+        <button class="tab-item active" data-action="switch-category-tab" data-tab="all" data-icon="tool">
+            <span class="tab-icon"></span>Aplicaciones
+        </button>
+        {% for area in areas %}
+        <button class="tab-item" data-action="switch-category-tab" data-tab="{{ area.name }}" data-icon="{{ area_icons.get(area.name, 'box') }}">
+            <span class="tab-icon"></span>{{ area.name }}
+        </button>
+        {% endfor %}
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <div class="draggable-grid grid-cols-3" id="user-dashboard">
+        {% for platform in platforms %}
+        <div class="app-card" data-area="{{ platform.area.name }}" data-id="{{ platform.id }}">
+            <button class="fav-marker" type="button" title="Marcar como favorito" data-action="catalog-toggle-favorite" data-platform-id="{{ platform.id }}">
+                <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"></path></svg>
+            </button>
+            <div class="app-icon" data-platform-icon="{{ platform.icon or 'box' }}" data-platform-logo="{{ platform.logo_url or '' }}">
+                <!-- Dinámico -->
+            </div>
+            <div class="app-info">
+                <div class="app-tag">{{ platform.area.name }}</div>
+                <div class="app-name">{{ platform.name }}</div>
+                <div class="app-desc" title="{{ platform.description }}">{{ platform.description or 'Sin descripción disponible.' }}</div>
+                <div class="card-actions">
+                    {% if platform.id in user_platform_ids %}
+                    <div class="d-flex gap-05 w-full mt-05">
+                        <button class="btn-launch-main flex-1 border-subtle btn-launch-secondary" type="button" data-action="catalog-open-url" data-url="{{ platform.resources or '#' }}">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Docs
+                        </button>
+                        <button class="btn-launch-main flex-1 btn-launch-compact" type="button" data-action="catalog-open-url" data-url="{{ url_for('register_visit', id=platform.id) }}">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2 2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            Abrir
+                        </button>
+                    </div>
+                    {% else %}
+                    <button class="btn-request-access flex-1" type="button" data-action="catalog-request-access" data-platform-id="{{ platform.id }}" data-platform-name="{{ platform.name|e }}">Solicitar Acceso</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Internal Empty State -->
+        <div id="grid-empty" class="d-none text-center catalog-empty-state" style="grid-column: 1 / -1; width: 100%;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mb-15 catalog-empty-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <h3 class="font-outfit text-primary">Sin aplicaciones en esta categoría</h3>
+            <p>No tienes herramientas registradas bajo este filtro.</p>
+        </div>
+    </div>
+
+    <!-- Smart Pagination -->
+    <div class="pagination-wrap" id="dash-pagination">
+        <button class="page-btn" disabled>&lt;</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">&gt;</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script nonce="{{ csp_nonce() }}" src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script nonce="{{ csp_nonce() }}">
+    window.__datos = {
+        userId: {{ current_user.id if current_user else 0 }},
+        urls: {
+            requestAccess: "{{ url_for('request_access_api') }}"
+        }
+    };
+</script>
+<script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/catalog.js') }}"></script>
+{% endblock %}

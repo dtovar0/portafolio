@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block title %}Autenticación | {{ portal_settings.portal_name or 'Portal TI' }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}?v=2">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}?v=11">
+{% endblock %}
+
+{% block breadcrumbs %}
+<span class="breadcrumb-item" data-action="go-home">Inicio</span>
+<span>/</span>
+<span class="breadcrumb-item">Sistema</span>
+<span>/</span>
+<span class="breadcrumb-item active">Autenticación</span>
+{% endblock %}
+
+{% block content %}
+<div class="settings-page-container w-full">
+    <!-- Premium Tab Navigation -->
+    <div class="settings-tabs">
+        <button class="settings-tab active" data-action="switch-tab" data-tab="ldapTab">
+            <i class="fas fa-network-wired"></i> LDAP / Active Directory
+        </button>
+    </div>
+
+    <form id="authSettingsForm" class="settings-form" data-premium-validate novalidate>
+        <!-- Tab: LDAP -->
+        <div id="ldapTab" class="tab-content active">
+            <div class="settings-card">
+                <div class="settings-section-header">
+                    <div class="header-info">
+                        <h3 class="settings-title-lg">Integración de Directorio</h3>
+                        <p class="settings-helper-text">Configura la autenticación centralizada para los usuarios del portal.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button type="button" class="btn btn-action-test" data-action="test-ldap">
+                            <i class="fas fa-network-wired"></i> Probar Conexión
+                        </button>
+                        <div class="v-divider"></div>
+                        <button type="submit" class="btn btn-action-new" data-action="save-auth">
+                            <i class="fas fa-save"></i>
+                            <span>Guardar Cambios</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Master Toggle: LDAP ENABLED -->
+                <div class="form-grid-2 mb-25">
+                    <div class="settings-toggle-card">
+                        <div class="toggle-card-info">
+                            <h4 class="settings-title-md">Estado del Servicio</h4>
+                            <p class="settings-helper-text">Indica si el portal debe intentar autenticar vía LDAP.</p>
+                        </div>
+                        <div class="toggle-card-action">
+                            <label class="toggle-switch-ios">
+                                <input type="checkbox" id="ldap_enabled" name="ldap_enabled" class="js-ldap-master-toggle" {% if settings.ldap_enabled %}checked{% endif %}>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="settings-info-banner">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Si se habilita LDAP, los usuarios podrán iniciar sesión con sus credenciales institucionales. El sistema buscará primero en la base de datos local.</p>
+                    </div>
+                </div>
+
+                <div class="branding-content-section">
+                    <!-- Section: CONEXIÓN -->
+                    <div class="section-label"><i class="fas fa-server"></i> Servidor y Conexión</div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">HOST / IP DEL SERVIDOR LDAP</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-link"></i>
+                                <input type="text" name="ldap_server" class="form-control js-ldap-input field-tech" value="{{ settings.ldap_server or '' }}" placeholder="ldap.empresa.local" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-row">
+                            <div class="form-group flex-1">
+                                <label class="form-label">PUERTO</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-plug"></i>
+                                    <input type="number" name="ldap_port" class="form-control js-ldap-input no-spin" value="{{ settings.ldap_port or '389' }}" min="1" max="65535" required>
+                                </div>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label class="form-label">SEGURIDAD</label>
+                                <div class="settings-toggle-card">
+                                    <div class="toggle-card-info d-flex items-center gap-075">
+                                        <i class="fas fa-shield-alt text-muted"></i>
+                                        <label for="ldap_use_ssl" class="toggle-label">LDAPS / SSL</label>
+                                    </div>
+                                    <label class="toggle-switch-ios">
+                                        <input type="checkbox" id="ldap_use_ssl" name="ldap_use_ssl" class="js-ldap-input" {% if settings.ldap_use_ssl %}checked{% endif %}>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: CREDENCIALES DE LECTURA (BIND) -->
+                    <div class="section-label mt-2"><i class="fas fa-user-lock"></i> Credenciales de Lectura (Bind DN)</div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">USUARIO BIND (DN COMPLETO)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-id-card"></i>
+                                <input type="text" name="ldap_user_dn" class="form-control js-ldap-input field-tech" value="{{ settings.ldap_user_dn or '' }}" placeholder="cn=admin,dc=empresa,dc=local" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CONTRASEÑA BIND</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-key"></i>
+                                <input type="password" name="ldap_password" class="form-control js-ldap-input" placeholder="••••••••••••" autocomplete="new-password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: ESTRUCTURA Y FILTRADO -->
+                    <div class="section-label mt-2"><i class="fas fa-sitemap"></i> Estructura y Filtrado</div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">BASE DN (BÚSQUEDA DE USUARIOS)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-folder-tree"></i>
+                                <input type="text" name="ldap_base_dn" class="form-control js-ldap-input field-tech" value="{{ settings.ldap_base_dn or '' }}" placeholder="dc=empresa,dc=local" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ATRIBUTO DE USUARIO (MAPPING)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-fingerprint"></i>
+                                <input type="text" name="ldap_user_attribute" class="form-control js-ldap-input field-tech" value="{{ settings.ldap_user_attribute or 'uid' }}" placeholder="uid / sAMAccountName" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script nonce="{{ csp_nonce() }}">
+    window.__datos = {
+        urls: {
+            update: "{{ url_for('update_auth_settings') }}",
+            test: "{{ url_for('test_ldap_connection') }}",
+            home: "{{ url_for('index') }}"
+        }
+    };
+</script>
+<script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/auth-page.js') }}?v=11"></script>
+{% endblock %}

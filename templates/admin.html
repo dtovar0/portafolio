@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard | {{ portal_settings.portal_name or 'Nexus Access' }}{% endblock %}
+
+{% block breadcrumbs %}
+<a class="breadcrumb-item active" href="{{ url_for('index') }}">Inicio</a>
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <div class="page-title">
+        <h1 class="fs-2xl">Dashboard</h1>
+    </div>
+</header>
+
+<!-- Modal for New Platform -->
+<div id="platformModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="adminPlatformModalTitle" aria-hidden="true">
+    <div class="modal-content" >
+        <div class="modal-header">
+            <h3 id="adminPlatformModalTitle" class="font-outfit fs-xl fw-700">Nueva Plataforma</h3>
+            <button class="btn-ghost fs-xl" type="button" aria-label="Cerrar modal" data-action="close-admin-platform-modal" style="border: none; cursor: pointer;">&times;</button>
+        </div>
+        <form action="{{ url_for('add_platform') }}" method="POST">
+            <div class="form-grid d-grid grid-2col" style="gap: 1.25rem;">
+                <div class="form-group">
+                    <label class="modal-form-label">Nombre</label>
+                    <input type="text" name="name" class="form-control modal-form-input" required placeholder="Ej: AWS Console">
+                </div>
+                <div class="form-group">
+                    <label class="modal-form-label">Área</label>
+                    <input type="text" name="area" class="form-control modal-form-input" required placeholder="Ej: IT / Infra">
+                </div>
+                <div class="form-group grid-col-span-2">
+                    <label class="modal-form-label">Descripción</label>
+                    <textarea name="description" class="form-control modal-form-textarea" rows="3" required placeholder="¿Para qué sirve?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="modal-form-label">Roles / Accesos</label>
+                    <input type="text" name="roles" class="form-control modal-form-input" placeholder="Ej: Admin, Finance">
+                </div>
+                <div class="form-group">
+                    <label class="modal-form-label">Link Directo</label>
+                    <input type="url" name="direct_link" class="form-control modal-form-input" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label class="modal-form-label">Responsable</label>
+                    <input type="text" name="owner" class="form-control modal-form-input" placeholder="Nombre o Equipo">
+                </div>
+                <div class="form-group">
+                    <label class="modal-form-label">Instrucciones de solicitud</label>
+                    <input type="text" name="request_method" class="form-control modal-form-input" placeholder="Ticket Jira, Email...">
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-end gap-1 mt-2">
+                <button type="button" class="btn btn-ghost" data-action="close-admin-platform-modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary btn-primary-filled">Guardar Plataforma</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Stats Widgets -->
+<div class="stats-grid">
+    <div class="stat-card modern">
+        <div class="stat-header">
+            <span class="label">Total plataformas</span>
+            <div class="stat-icon-box indigo" style="background: var(--accent-indigo-bg); color: var(--primary-color);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </div>
+        </div>
+        <div class="value">{{ total or 0 }}</div>
+        <div class="stat-footer">
+            <span class="sub-label positive">+{{ platforms_new }} este mes</span>
+        </div>
+    </div>
+
+    <div class="stat-card modern">
+        <div class="stat-header">
+            <span class="label">Áreas cubiertas</span>
+            <div class="stat-icon-box green" style="background: rgba(16, 185, 129, 0.1); color: var(--status-approved);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+        </div>
+        <div class="value">{{ areas_count|length or 0 }}</div>
+        <div class="stat-footer">
+            <span class="sub-label">De {{ areas_goal }} áreas totales</span>
+        </div>
+    </div>
+
+    <div class="stat-card modern">
+        <div class="stat-header">
+            <span class="label">Solicitudes</span>
+            <div class="stat-icon-box orange" style="background: rgba(245, 158, 11, 0.1); color: var(--status-pending);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            </div>
+        </div>
+        <div class="value">{{ pending or 0 }}</div>
+        <div class="stat-footer">
+            <span class="sub-label warning">{{ priority_count }} de alta prioridad</span>
+        </div>
+    </div>
+
+    <div class="stat-card modern">
+        <div class="stat-header">
+            <span class="label">Visitas este mes</span>
+            <div class="stat-icon-box blue" style="background: rgba(14, 165, 233, 0.1); color: #0ea5e9;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </div>
+        </div>
+        <div class="value">{{ visits_total or 0 }}</div>
+        <div class="stat-footer">
+            <span class="sub-label positive">{{ visits_up }} vs anterior</span>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Areas Progress -->
+    <div class="stat-card card-large">
+        <div class="card-header">
+            <h2>Plataformas por área</h2>
+        </div>
+        
+        <div class="area-progress-list">
+            {% set colors = ['#6366f1', '#40513b', '#9d314a', '#818cf8', '#78350f'] %}
+            {% for area, count in areas_count %}
+            <div class="area-progress-item">
+                <span class="area-name">{{ area }}</span>
+                <div class="progress-container">
+                    {% set percent = (count / total * 100)|round %}
+                    <div class="progress-bar" style="width: {{ percent }}%; background-color: {{ colors[loop.index0 % colors|length] }};"></div>
+                </div>
+                <span class="area-count">{{ count }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Pending Requests -->
+    <div class="stat-card card-large">
+        <div class="card-header border-none">
+            <h2>Solicitudes pendientes</h2>
+            <a href="#" class="link-primary">Ver todas</a>
+        </div>
+        
+        <div class="requests-list">
+            {% if pending_list %}
+                {% for req in pending_list %}
+                <div class="request-item">
+                    <div class="avatar-circle" style="background: var(--accent-indigo-bg); color: var(--primary-color);">
+                        <div class="status-dot" style="background: var(--accent-red);"></div>
+                        {{ req.user.name[:2].upper() }}
+                    </div>
+                    <div class="request-info">
+                        <span class="user-name">{{ req.user.name }}</span>
+                        <span class="platform-time">{{ req.platform.name }} · {{ req.created_at.strftime('%H:%M') }}</span>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-action" type="button" data-action="process-admin-request" data-request-id="{{ req.id }}" data-request-op="approve">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </button>
+                        <button class="btn-action" type="button" data-action="process-admin-request" data-request-id="{{ req.id }}" data-request-op="reject">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="p-2 text-center text-muted" style="font-size: 0.9rem;">
+                    No hay solicitudes pendientes
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Bottom Section -->
+<div class="dashboard-grid margin-top-lg">
+    <section>
+        <div class="card-header border-none">
+            <h2>Últimas agregadas</h2>
+            <a href="#" class="link-primary">Ver todas</a>
+        </div>
+        <div class="stat-card p-1 rounded-lg">
+             {% for p in latest[:3] %}
+             <div class="d-flex justify-between" style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                <span>{{ p.name }}</span>
+                <span class="badge">{{ p.area }}</span>
+             </div>
+             {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <div class="card-header border-none">
+            <h2>Más visitadas</h2>
+        </div>
+        <div class="stat-card p-1 rounded-lg">
+             {% for p in most_visited[:3] %}
+             <div class="d-flex justify-between" style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                <span>{{ p.name }}</span>
+                <span class="text-muted">{{ p.visits }} visitas</span>
+             </div>
+             {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/admin-page.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,148 @@
+<%
+const safeStats = (typeof stats !== 'undefined' && stats) ? stats : {
+    areas: 0, platforms: 0, users: 0, pending: 0, visits: 0
+};
+const safeLogList = Array.isArray(typeof log_list !== 'undefined' ? log_list : null) ? log_list : [];
+function logDot(action) {
+    const approved = ['Alta','Aprobado','Activación'];
+    const warn = ['Modificación'];
+    if (approved.includes(action)) return '#10b981';
+    if (warn.includes(action)) return '#f59e0b';
+    return '#ef4444';
+}
+function logVerb(action) {
+    const map = { 'Alta':'Creó','Baja':'Eliminó','Modificación':'Modificó','Activación':'Activó','Deshabilitación':'Deshabilitó','Aprobado':'Acceso aprobado','Rechazado':'Acceso denegado' };
+    return map[action] || action;
+}
+function fmtTime(d) {
+    if (!d) return '';
+    const dt = d instanceof Date ? d : new Date(d);
+    return dt.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
+}
+%>
+
+<div class="kpi-row-5 mb-15">
+    <div class="status-card-dash">
+        <div class="card-icon-dash" style="background: rgba(16,185,129,0.1); color: var(--status-approved);"><i class="fas fa-network-wired"></i></div>
+        <div class="kpi-text-col">
+            <div class="kpi-value-new">Áreas</div>
+            <div class="kpi-label-new"><%= safeStats.areas %></div>
+        </div>
+    </div>
+    <div class="status-card-dash">
+        <div class="card-icon-dash" style="background: var(--accent-indigo-bg); color: var(--primary-color);"><i class="fas fa-layer-group"></i></div>
+        <div class="kpi-text-col">
+            <div class="kpi-value-new">Plataformas</div>
+            <div class="kpi-label-new"><%= safeStats.platforms %></div>
+        </div>
+    </div>
+    <div class="status-card-dash">
+        <div class="card-icon-dash" style="background: var(--accent-indigo-bg); color: #8b5cf6;"><i class="fas fa-users"></i></div>
+        <div class="kpi-text-col">
+            <div class="kpi-value-new">Usuarios</div>
+            <div class="kpi-label-new"><%= safeStats.users %></div>
+        </div>
+    </div>
+    <div class="status-card-dash">
+        <div class="card-icon-dash" style="background: rgba(217,119,6,0.1); color: var(--status-pending);"><i class="fas fa-clock"></i></div>
+        <div class="kpi-text-col">
+            <div class="kpi-value-new">Pendientes</div>
+            <div class="kpi-label-new"><%= safeStats.pending %></div>
+        </div>
+    </div>
+    <div class="status-card-dash">
+        <div class="card-icon-dash" style="background: rgba(59,130,246,0.1); color: var(--status-info);"><i class="fas fa-eye"></i></div>
+        <div class="kpi-text-col">
+            <div class="kpi-value-new">Visitas</div>
+            <div class="kpi-label-new"><%= safeStats.visits %></div>
+        </div>
+    </div>
+</div>
+
+<!-- Row 2: Main Content -->
+<div class="dashboard-main-columns" style="gap: 1.25rem;">
+    <!-- Left: 2x2 Chart Grid -->
+    <div class="grid-2x2" style="gap: 1.25rem;">
+        <!-- 1. Usuarios por Plataforma -->
+        <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
+            <div class="card-header border-none d-flex justify-between items-center mb-075">
+                <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Usuarios por Plataforma</h2>
+                <a href="/platforms" class="btn-view-more" data-tooltip="Más detalle"><i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="pos-relative" style="height: 220px;"><canvas id="usersPlatformChart"></canvas></div>
+        </div>
+        <!-- 2. Usuarios por Área -->
+        <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
+            <div class="card-header border-none d-flex justify-between items-center mb-075">
+                <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Usuarios por Área</h2>
+                <a href="/areas" class="btn-view-more" data-tooltip="Más detalle"><i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="pos-relative" style="height: 220px;"><canvas id="usersAreaBarChart"></canvas></div>
+        </div>
+        <!-- 3. Solicitudes Pendientes -->
+        <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
+            <div class="card-header border-none d-flex justify-between items-center mb-075">
+                <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Solicitudes Pendientes</h2>
+                <a href="/requests" class="btn-view-more" data-tooltip="Más detalle"><i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="pos-relative" style="height: 220px;"><canvas id="pendingRequestsChart"></canvas></div>
+        </div>
+        <!-- 4. Más Visitadas -->
+        <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
+            <div class="card-header border-none d-flex justify-between items-center mb-075">
+                <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Plataformas Más Visitadas</h2>
+                <a href="/platforms" class="btn-view-more" data-tooltip="Más detalle"><i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="pos-relative" style="height: 220px;"><canvas id="mostVisitedChart"></canvas></div>
+        </div>
+    </div>
+
+    <!-- Right: Activity Log -->
+    <div class="stat-card modern log-card" style="display: flex; flex-direction: column; padding: 1rem;">
+        <div class="card-header border-bottom-subtle d-flex justify-between items-center mb-10" style="padding-bottom: 0.75rem; flex-shrink: 0;">
+            <div class="d-flex items-center gap-05">
+                <i class="fas fa-satellite-dish text-primary" style="font-size: 0.9rem; opacity: 0.8;"></i>
+                <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Monitoreo de Actividad</h2>
+            </div>
+            <a href="/requests" class="btn-view-more" data-tooltip="Más detalle"><i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="log-list-v2" style="max-height: 540px; overflow-y: auto;">
+            <% if (safeLogList.length === 0) { %>
+            <div class="premium-log-empty">
+                <div class="log-empty-visual">
+                    <div class="log-empty-radar"></div>
+                    <div class="log-empty-icon"><i class="fas fa-wave-square"></i></div>
+                </div>
+                <p class="chart-empty-title">Sin actividad reciente</p>
+                <p class="chart-empty-text">El sistema está monitoreando eventos en tiempo real.</p>
+            </div>
+            <% } else { safeLogList.forEach(r => { %>
+            <div class="log-item-new">
+                <div class="log-dot-indicator" style="background: <%- logDot(r.action) %>;"></div>
+                <div class="log-body-content">
+                    <div class="log-user-name"><%= r.user_name || 'Sistema' %></div>
+                    <div class="log-action-descr"><%- logVerb(r.action) %> <span class="fw-700"><%= r.entity_name %></span></div>
+                </div>
+                <div class="log-time-stamp"><%- fmtTime(r.created_at) %></div>
+            </div>
+            <% }); } %>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    window.__chartData = {
+        usersPlatformLabels: <%- JSON.stringify(typeof usersPlatformLabels !== 'undefined' ? usersPlatformLabels : []) %>,
+        usersPlatformValues: <%- JSON.stringify(typeof usersPlatformValues !== 'undefined' ? usersPlatformValues : []) %>,
+        accentColor: '<%- typeof accentColor !== 'undefined' ? accentColor : '#6366f1' %>',
+        usersAreaLabels: <%- JSON.stringify(typeof usersAreaLabels !== 'undefined' ? usersAreaLabels : []) %>,
+        usersAreaValues: <%- JSON.stringify(typeof usersAreaValues !== 'undefined' ? usersAreaValues : []) %>,
+        usersAreaColors: <%- JSON.stringify(typeof usersAreaColors !== 'undefined' ? usersAreaColors : []) %>,
+        pendingPlatformLabels: <%- JSON.stringify(typeof pendingPlatformLabels !== 'undefined' ? pendingPlatformLabels : []) %>,
+        pendingPlatformValues: <%- JSON.stringify(typeof pendingPlatformValues !== 'undefined' ? pendingPlatformValues : []) %>,
+        mostVisitedLabels: <%- JSON.stringify(typeof mostVisitedLabels !== 'undefined' ? mostVisitedLabels : []) %>,
+        mostVisitedValues: <%- JSON.stringify(typeof mostVisitedValues !== 'undefined' ? mostVisitedValues : []) %>
+    };
+</script>
+<script src="/static/js/dashboard.js?v=2"></script>

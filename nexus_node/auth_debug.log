@@ -1,0 +1,2322 @@
+◇ injected env (0) from .env [2m// tip: ⌘ enable debugging { debug: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+◇ injected env (0) from .env [2m// tip: ⌘ enable debugging { debug: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T05:54:50.076Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ multiple files { path: ['.env.local', '.env'] }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] POST /login
+[LoginAttempt] Email: admin@nexus.local
+[LoginError] ReferenceError: fs is not defined
+    at login (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/authController.js:22:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[Request] GET /
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: admin@nexus.local
+[LoginError] ReferenceError: fs is not defined
+    at login (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/authController.js:22:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[Request] POST /login
+[LoginAttempt] Email: admin@nexus.local
+[LoginError] ReferenceError: fs is not defined
+    at login (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/authController.js:22:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[Request] GET /favicon.ico
+[Request] POST /login
+[LoginAttempt] Email: admin@nexus.local
+[LoginError] ReferenceError: fs is not defined
+    at login (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/authController.js:22:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[Request] GET /
+[Request] GET /login
+[Request] GET /login
+[Request] GET /login
+[Request] GET /login
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginError] ReferenceError: fs is not defined
+    at login (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/authController.js:22:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+--- SERVIDOR REINICIADO: 2026-04-13T05:57:42.652Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ enable debugging { debug: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginError] ReferenceError: fs is not defined
+    at login [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/authController.js:22:9[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginError] ReferenceError: fs is not defined
+    at login [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/authController.js:22:9[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+
+--- SERVIDOR REINICIADO: 2026-04-13T05:58:28.733Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ enable debugging { debug: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T05:59:05.727Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[HashDebug] Método: scrypt
+[HashDebug] Scrypt Params: N=32768, r=undefined, p=undefined, salt=8
+[HashError] TypeError: Cannot read properties of undefined (reading 'substring')
+    at verifyPassword [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/utils/hashHelper.js:47:57[90m)[39m
+    at login [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/authController.js:32:14[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[LoginAttempt] Password mismatch for: dtovar@vivaro.com
+[Request] POST /login
+[LoginAttempt] Email: admin@nexus.local
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: admin@nexus.local
+[HashDebug] Método: scrypt
+[HashDebug] Scrypt Params: N=32768, r=undefined, p=undefined, salt=8
+[HashError] TypeError: Cannot read properties of undefined (reading 'substring')
+    at verifyPassword [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/utils/hashHelper.js:47:57[90m)[39m
+    at login [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/authController.js:32:14[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[LoginAttempt] Password mismatch for: admin@nexus.local
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[HashDebug] Método: scrypt
+[HashDebug] Scrypt Params: N=32768, r=undefined, p=undefined, salt=8
+[LoginAttempt] Password mismatch for: dtovar@vivaro.com
+[HashError] TypeError: Cannot read properties of undefined (reading 'substring')
+    at verifyPassword [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/utils/hashHelper.js:47:57[90m)[39m
+    at login [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/authController.js:32:14[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[HashDebug] Método: scrypt
+[HashDebug] Scrypt Params: N=32768, r=undefined, p=undefined, salt=8
+[HashError] TypeError: Cannot read properties of undefined (reading 'substring')
+    at verifyPassword [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/utils/hashHelper.js:47:57[90m)[39m
+    at login [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/authController.js:32:14[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[LoginAttempt] Password mismatch for: dtovar@vivaro.com
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[HashDebug] Método: scrypt
+[HashDebug] Scrypt Params: N=32768, r=undefined, p=undefined, salt=8
+[LoginAttempt] Password mismatch for: dtovar@vivaro.com
+[HashError] TypeError: Cannot read properties of undefined (reading 'substring')
+    at verifyPassword [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/utils/hashHelper.js:47:57[90m)[39m
+    at login [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/authController.js:32:14[90m)[39m
+[90m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+
+--- SERVIDOR REINICIADO: 2026-04-13T06:04:16.189Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[LoginAttempt] Password mismatch for: dtovar@vivaro.com
+
+--- SERVIDOR REINICIADO: 2026-04-13T06:05:25.378Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ multiple files { path: ['.env.local', '.env'] }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[LoginAttempt] Password mismatch for: dtovar@vivaro.com
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[LoginAttempt] Password mismatch for: dtovar@vivaro.com
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[Request] GET /
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+TypeError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:86
+    84|                     <div class="user-profile-trigger">
+    85|                         <div class="avatar" style="background: var(--primary-color); color: white;">
+ >> 86|                             <%= user ? user.name.substring(0, 2).toUpperCase() : 'AD' %>
+    87|                         </div>
+    88|                         <div class="user-info">
+    89|                             <span class="user-name"><%= user ? user.name : 'Administrador' %></span>
+
+Cannot read properties of undefined (reading 'substring')
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":62:43)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+TypeError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:86
+    84|                     <div class="user-profile-trigger">
+    85|                         <div class="avatar" style="background: var(--primary-color); color: white;">
+ >> 86|                             <%= user ? user.name.substring(0, 2).toUpperCase() : 'AD' %>
+    87|                         </div>
+    88|                         <div class="user-info">
+    89|                             <span class="user-name"><%= user ? user.name : 'Administrador' %></span>
+
+Cannot read properties of undefined (reading 'substring')
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":62:43)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+TypeError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:86
+    84|                     <div class="user-profile-trigger">
+    85|                         <div class="avatar" style="background: var(--primary-color); color: white;">
+ >> 86|                             <%= user ? user.name.substring(0, 2).toUpperCase() : 'AD' %>
+    87|                         </div>
+    88|                         <div class="user-info">
+    89|                             <span class="user-name"><%= user ? user.name : 'Administrador' %></span>
+
+Cannot read properties of undefined (reading 'substring')
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":62:43)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+TypeError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:86
+    84|                     <div class="user-profile-trigger">
+    85|                         <div class="avatar" style="background: var(--primary-color); color: white;">
+ >> 86|                             <%= user ? user.name.substring(0, 2).toUpperCase() : 'AD' %>
+    87|                         </div>
+    88|                         <div class="user-info">
+    89|                             <span class="user-name"><%= user ? user.name : 'Administrador' %></span>
+
+Cannot read properties of undefined (reading 'substring')
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":62:43)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /platforms
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /areas
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:28
+    26|     <link rel="stylesheet" href="/static/css/dashboard.css">
+    27|     
+ >> 28|     <%- style %>
+    29| 
+    30|     <style>
+    31|         :root {
+
+style is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":15:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs:139
+    137|     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    138|     <script src="/static/js/base-ui.js"></script>
+ >> 139|     <%- script %>
+    140| </body>
+    141| </html>
+    142| 
+
+script is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/layout.ejs":74:17)
+    at layout (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at /home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:113:20
+    at renderTick (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:154:23)
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /areas
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs:9
+    7|         <div class="kpi-text-col">
+    8|             <div class="kpi-value-new">Áreas</div>
+ >> 9|             <div class="kpi-label-new"><%= stats.areas %></div>
+    10|         </div>
+    11|     </div>
+    12| 
+
+stats is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/index.ejs":12:26)
+    at index (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at /home/dtovar/bayblade/portafolio/nexus_node/src/app.js:64:9
+[Request] GET /
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /requests
+
+--- SERVIDOR REINICIADO: 2026-04-13T06:47:54.718Z ---
+◇ injected env (0) from nexus_node/.env [2m// tip: ⌁ auth for agents [www.vestauth.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+
+--- SERVIDOR REINICIADO: 2026-04-13T06:50:20.488Z ---
+◇ injected env (0) from nexus_node/.env [2m// tip: ◈ encrypted .env [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /
+[Request] GET /
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+
+--- SERVIDOR REINICIADO: 2026-04-13T06:51:51.686Z ---
+◇ injected env (0) from nexus_node/.env [2m// tip: ◈ secrets for agents [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/notifications
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /login
+[Request] GET /areas
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /
+[Request] GET /login
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] POST /admin/add-area
+[Request] POST /admin/add-area
+[Request] POST /admin/add-area
+[Request] GET /areas
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] POST /admin/add-area
+[Request] GET /areas
+[Request] POST /admin/edit-area/9
+[Request] POST /admin/add-platform
+[Request] GET /platforms
+[Request] POST /admin/edit-platform/2
+[Request] POST /admin/add-user
+[Request] GET /users
+[Request] POST /admin/edit-user/3
+[Request] POST /api/request-access
+[Request] GET /requests
+[Request] POST /admin/add-area
+[Request] GET /areas
+[Request] POST /admin/edit-area/10
+[Request] POST /admin/add-platform
+[Request] GET /platforms
+[Request] POST /admin/edit-platform/3
+[Request] POST /admin/add-user
+[Request] GET /users
+[Request] POST /admin/edit-user/4
+[Request] POST /api/request-access
+[Request] GET /requests
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /admin/request/approve/4
+[Request] POST /admin/delete-user/4
+[Request] POST /admin/delete-platform/3
+[Request] POST /admin/delete-area/10
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] POST /admin/add-area
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /admin/auth
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /platform/visit/1
+[Request] GET /requests
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /admin/audit
+[Request] GET /admin/general
+[Request] GET /platforms
+[Request] GET /users
+[Request] POST /admin/delete-user/3
+[Request] GET /platforms
+[Request] POST /admin/delete-platform/2
+[Request] GET /areas
+[Request] POST /admin/delete-area/6
+[Request] POST /admin/delete-area/7
+[Request] POST /admin/delete-area/8
+[Request] POST /admin/delete-area/9
+[Request] POST /admin/delete-area/11
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:07:28.298Z ---
+◇ injected env (0) from .env [2m// tip: ◈ encrypted .env [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:07:35.882Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ override existing { override: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:07:42.686Z ---
+◇ injected env (0) from .env [2m// tip: ◈ secrets for agents [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:07:50.493Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:07:58.917Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:08:38.777Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:08:58.126Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ multiple files { path: ['.env.local', '.env'] }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:09:32.666Z ---
+◇ injected env (0) from .env [2m// tip: ⌁ auth for agents [www.vestauth.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/audit
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /admin/general
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /
+[Request] GET /
+[Request] GET /admin/general
+[Request] GET /static/js/general-page.js
+[Request] GET /static/js/general-page.js
+[Request] GET /admin/general
+[Request] GET /static/js/general-page.js
+[Request] GET /static/js/general-page.js
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /platforms
+ReferenceError: /home/dtovar/bayblade/portafolio/nexus_node/views/platforms/list.ejs:214
+    212| <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    213| <script>
+ >> 214|     window.__platformData = <%- JSON.stringify(grouped_platforms || {}) %>;
+    215|     window.__areaData = <%- JSON.stringify(area_list || []) %>;
+    216|     window.__allUsers = <%- JSON.stringify(all_users || []) %>;
+    217|     window.__urls = { index: '/' };
+
+grouped_platforms is not defined
+    at eval ("/home/dtovar/bayblade/portafolio/nexus_node/views/platforms/list.ejs":12:32)
+    at list (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:632:23)
+    at tryHandleCache (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:253:42)
+    at ejs.renderFile [as engine] (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/ejs/lib/cjs/ejs.js:444:12)
+    at View.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/view.js:139:8)
+    at tryRender (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:627:10)
+    at Function.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express/lib/response.js:923:7)
+    at res.render (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/express-ejs-layouts/lib/express-layouts.js:77:18)
+    at getPlatforms (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/platformController.js:15:13)
+[Request] GET /platforms
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:24:09.138Z ---
+◇ injected env (0) from nexus_node/.env [2m// tip: ⌘ custom filepath { path: '/custom/path/.env' }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /platforms
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /login
+[Request] GET /login
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/areas-api
+[Request] GET /admin/user-access/1
+[Request] GET /admin/update-user-access/1
+[Request] GET /admin/ldap-search-api
+[Request] GET /admin/import-ldap-user
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/areas-api
+[Request] GET /admin/user-access/1
+[Request] GET /admin/update-user-access/1
+[Request] GET /admin/ldap-search-api
+[Request] GET /admin/import-ldap-user
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:35:13.883Z ---
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/areas-api
+[Request] GET /admin/user-access/1
+[Request] GET /admin/ldap-search-api
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:35:46.556Z ---
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/areas-api
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:37:04.555Z ---
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/areas-api
+[Request] GET /admin/user-access/1
+[Request] GET /admin/ldap-search-api
+[Request] GET /
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /catalogo
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:41:21.289Z ---
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/users
+[Request] GET /admin/platforms
+[Request] GET /admin/areas
+[Request] GET /admin/requests
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/areas-api
+[Request] GET /admin/user-access/1
+[Request] GET /admin/ldap-search-api
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /admin/areas-api
+[Request] GET /admin/user-access/1
+[Request] GET /admin/ldap-search-api
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:45:32.804Z ---
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /catalogo
+[Request] GET /catalogo
+
+--- SERVIDOR REINICIADO: 2026-04-13T07:57:40.570Z ---
+◇ injected env (0) from .env // tip: ⌘ override existing { override: true }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /users
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /users
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /admin/audit
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /admin/user-access/2
+[Request] GET /admin/areas-api
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/audit
+[Request] GET /logout
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/audit
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:08:44.843Z ---
+◇ injected env (0) from .env // tip: ⌘ suppress logs { quiet: true }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /audit
+[Request] GET /areas
+[Request] GET /users
+[Request] HEAD /audit
+[Request] HEAD /requests
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:11:36.678Z ---
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /users
+[Request] GET /admin/general
+[Request] HEAD /audit
+[Request] HEAD /admin/audit
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/user-access/1
+[Request] GET /admin/areas-api
+[Request] GET /admin/notifications
+[Request] GET /admin/auth
+[Request] GET /admin/general
+[Request] POST /admin/test-db
+[Request] POST /admin/test-db
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:22:48.851Z ---
+◇ injected env (0) from nexus_node/.env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /areas
+[Request] GET /requests
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /platforms
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /platforms
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /areas
+[Request] POST /admin/edit-area/4
+[AreaUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editArea (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/areaController.js:112:32)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at adminOnly (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:32:12)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at protect (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:15:9)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:117:3)
+[Request] POST /admin/edit-area/4
+[AreaUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editArea (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/areaController.js:112:32)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at adminOnly (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:32:12)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at protect (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:15:9)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:117:3)
+[Request] GET /admin/general
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /areas
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /favicon.ico
+[Request] GET /platforms
+[Request] GET /favicon.ico
+[Request] GET /areas
+[Request] POST /admin/edit-area/4
+[AreaUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editArea (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/areaController.js:112:32)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at adminOnly (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:32:12)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at protect (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:15:9)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:117:3)
+[Request] GET /areas
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /platforms
+[Request] GET /favicon.ico
+[Request] GET /platforms
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:42:31.941Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ enable debugging { debug: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /platforms
+[Request] GET /catalogo
+[Request] GET /requests
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /
+[Request] GET /static/js/dashboard.js
+[Request] GET /static/js/dashboard.js
+[Request] GET /areas
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:46:09.273Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /platforms
+[Request] GET /users
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:48:41.279Z ---
+◇ injected env (0) from .env [2m// tip: ◈ secrets for agents [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] POST /admin/test-db
+[Request] GET /admin/general
+[Request] GET /areas
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/general
+[Request] POST /admin/test-db
+[Request] POST /admin/test-db
+[Request] GET /admin/notifications
+[Request] GET /users
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:51:32.254Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ enable debugging { debug: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /users
+[Request] GET /admin/general
+[Request] POST /admin/test-db
+[Request] POST /admin/test-db
+[Request] POST /admin/test-db
+[Request] GET /
+[Request] GET /requests
+[Request] GET /
+[Request] GET /users
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /platforms
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:54:33.479Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ override existing { override: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /api/search?q=dto
+[Request] GET /users
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:56:09.350Z ---
+◇ injected env (0) from .env [2m// tip: ◈ secrets for agents [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/user-access/2
+[Request] GET /admin/areas-api
+[Request] POST /admin/edit-user/2
+[UserUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editUser (/home/dtovar/bayblade/portafolio/nexus_node/src/controllers/userController.js:130:32)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at adminOnly (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:32:12)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at protect (/home/dtovar/bayblade/portafolio/nexus_node/src/middlewares/authMiddleware.js:15:9)
+    at Layer.handleRequest (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/layer.js:152:17)
+    at next (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/home/dtovar/bayblade/portafolio/nexus_node/node_modules/router/lib/route.js:117:3)
+
+--- SERVIDOR REINICIADO: 2026-04-13T08:58:18.403Z ---
+◇ injected env (0) from .env [2m// tip: ◈ encrypted .env [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+
+--- SERVIDOR REINICIADO: 2026-04-13T09:05:32.944Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ enable debugging { debug: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /catalogo
+[Request] GET /favicon.ico
+
+--- SERVIDOR REINICIADO: 2026-04-13T09:09:09.566Z ---
+◇ injected env (0) from .env [2m// tip: ⌁ auth for agents [www.vestauth.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /catalogo
+[Request] GET /favicon.ico
+[Request] GET /catalogo
+[Request] GET /favicon.ico
+
+--- SERVIDOR REINICIADO: 2026-04-13T09:12:35.420Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ override existing { override: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /favicon.ico
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+
+--- SERVIDOR REINICIADO: 2026-04-13T09:18:17.620Z ---
+◇ injected env (0) from .env [2m// tip: ◈ secrets for agents [www.dotenvx.com][0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /favicon.ico
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /logout
+[Request] GET /login
+[Request] POST /login
+[LoginAttempt] Email: dtovar@vivaro.com
+[LoginAttempt] User found: true
+[LoginAttempt] Hashing verify start for: dtovar@vivaro.com
+[Request] GET /
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /
+[Request] GET /requests
+[Request] GET /platforms
+[Request] GET /admin/audit
+[Request] GET /static/js/audit-page.js?v=11
+[Request] GET /admin/auth
+[Request] GET /admin/notifications
+[Request] GET /admin/general
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/areas-api
+[Request] POST /admin/edit-user/2
+[UserUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editUser [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/userController.js:130:40[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at adminOnly [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:32:12[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at protect [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:15:9[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at Route.dispatch [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:117:3[90m)[39m
+[Request] GET /users
+[Request] GET /login
+[Request] GET /users
+[Request] GET /admin/areas-api
+[Request] POST /admin/edit-user/2
+[UserUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editUser [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/userController.js:130:40[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at adminOnly [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:32:12[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at protect [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:15:9[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at Route.dispatch [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:117:3[90m)[39m
+[Request] GET /admin/areas-api
+[Request] GET /users
+
+--- SERVIDOR REINICIADO: 2026-04-13T09:32:06.571Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ suppress logs { quiet: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /admin/edit-user/2
+[Request] GET /users
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/areas-api
+[Request] POST /admin/edit-user/2
+[UserUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editUser [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/userController.js:130:40[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at adminOnly [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:32:12[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at protect [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:15:9[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at Route.dispatch [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:117:3[90m)[39m
+[Request] GET /users
+[Request] GET /admin/areas-api
+[Request] POST /admin/edit-user/2
+[UserUpdateError] TypeError: Cannot read properties of undefined (reading 'name')
+    at editUser [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/controllers/userController.js:130:40[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at adminOnly [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:32:12[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at protect [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39msrc/middlewares/authMiddleware.js:15:9[90m)[39m
+    at Layer.handleRequest [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/layer.js:152:17[90m)[39m
+    at next [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:157:13[90m)[39m
+    at Route.dispatch [90m(/home/dtovar/bayblade/portafolio/nexus_node/[39mnode_modules/[4mrouter[24m/lib/route.js:117:3[90m)[39m
+
+--- SERVIDOR REINICIADO: 2026-04-13T09:37:31.387Z ---
+◇ injected env (0) from .env [2m// tip: ⌘ override existing { override: true }[0m
+[32m[Nexus Node][0m Servidor iniciado en http://localhost:3000
+[36m[Status][0m Conectado a base de datos: nexus_node_db
+[36m[Config][0m Portal: localhost
+[Request] GET /users
+[Request] GET /admin/areas-api
+[Request] POST /admin/edit-user/2
+[Request] GET /users
+[Request] GET /login
+[Request] GET /catalogo
+[Request] GET /users
+[Request] GET /users
+[Request] GET /users
+[Request] GET /users
+[Request] GET /users
+[Request] GET /users
+[Request] GET /users
+[Request] GET /users
+[Request] GET /requests
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /admin/general
+[Request] POST /admin/test-db
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /admin/general
+[Request] GET /catalogo
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /catalogo
+[Request] GET /admin/general
+[Request] GET /platforms
+[Request] GET /requests
+[Request] GET /requests
+[Request] GET /requests
+[Request] GET /requests
+[Request] GET /requests
+[Request] GET /
+[Request] GET /platforms
+[Request] GET /areas
+[Request] GET /users
+[Request] GET /areas

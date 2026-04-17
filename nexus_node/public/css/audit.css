@@ -1,0 +1,116 @@
+/* Audit Page Styles */
+.audit-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.audit-search-field {
+    width: 320px !important;
+}
+
+
+
+.audit-table-wrapper {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.audit-table-head {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-input) !important;
+}
+
+.audit-td-first {
+    padding-left: 1.5rem !important;
+}
+
+.audit-td-last {
+    padding-right: 1.5rem !important;
+}
+
+.audit-entity-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.audit-detail-box {
+    max-width: 450px;
+    line-height: 1.4;
+}
+
+.avatar-sm {
+    flex-shrink: 0;
+}
+
+/* Custom backgrounds for avatars/icons in audit */
+.bg-audit-subtle {
+    background: var(--accent-indigo-bg);
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+}
+
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.pagination-btn:hover:not(.disabled) {
+    background: var(--bg-hover);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.pagination-current {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.user-info-stack,
+.entity-info-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-email,
+.entity-type {
+    display: block;
+    line-height: 1.2;
+}
+
+.audit-description-box {
+    max-width: 450px;
+    line-height: 1.5;
+}

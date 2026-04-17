@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalador | Nexus Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.08);
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --danger: #f43f5e;
+            --success: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            position: relative;
+            width: 100vw;
+            color: var(--text-main);
+        }
+
+        .ambient-sphere {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
+            z-index: 0; pointer-events: none;
+        }
+        .sphere-1 { width: 600px; height: 600px; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); top: -200px; right: -100px; animation: float 20s infinite alternate; }
+        .sphere-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%); bottom: -150px; left: -100px; animation: float 25s infinite alternate-reverse; }
+        @keyframes float { from { transform: translate(0, 0); } to { transform: translate(50px, 50px); } }
+
+        .install-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            padding: 3rem 3.5rem;
+            width: 100%; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+            border: 1px solid rgba(226, 232, 240, 0.7);
+            position: relative; z-index: 10;
+        }
+
+        .step-indicator {
+            display: flex; justify-content: space-around; margin-bottom: 2.5rem;
+            padding: 0 1rem; position: relative; gap: 2rem;
+        }
+        .step-indicator::before {
+            content: ''; position: absolute; top: 22px; left: 3.5rem; right: 3.5rem;
+            height: 3px; background: #f1f5f9; z-index: 1; border-radius: 4px;
+        }
+        .step-progress-line {
+            position: absolute; top: 22px; left: 3.5rem; width: 0%;
+            height: 3px; background: var(--primary-gradient);
+            z-index: 1; border-radius: 4px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .step-item {
+            display: flex; flex-direction: column; align-items: center; 
+            gap: 0.75rem; z-index: 2; flex: 1;
+        }
+        .step-pill {
+            width: 44px; height: 44px; border-radius: 14px; background: white;
+            border: 2px solid #f1f5f9; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; color: #94a3b8; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .step-label {
+            font-size: 0.7rem; font-weight: 700; color: #94a3b8;
+            text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s;
+        }
+        .step-item.active .step-pill { border-color: var(--primary); color: var(--primary); background: #f5f7ff; transform: scale(1.1); }
+        .step-item.active .step-label { color: var(--primary); }
+        .step-item.completed .step-pill { background: var(--primary); border-color: var(--primary); color: white; }
+
+        .step-pane { display: none; }
+        .step-pane.active { display: block; animation: paneIn 0.4s ease forwards; }
+        @keyframes paneIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .logo-box { text-align: center; margin-bottom: 2rem; }
+        .install-title { font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 900; letter-spacing: -0.03em; }
+
+        .form-group { margin-bottom: 1.25rem; position: relative; }
+        .form-label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .form-input {
+            width: 100%; padding: 0.9rem 1rem 0.9rem 3rem;
+            border: 1px solid var(--border); border-radius: 14px;
+            font-size: 0.95rem; transition: all 0.3s;
+            background: #fcfdfe; color: var(--text-main);
+        }
+        .form-input:focus { outline: none; border-color: var(--primary); background: var(--card); box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08); }
+        
+        .input-icon { position: absolute; left: 1.15rem; color: #94a3b8; font-size: 0.95rem; }
+        
+        /* New: Gen Password Action */
+        .btn-gen {
+            position: absolute; right: 0.8rem;
+            background: var(--primary-glow); border: 1px solid rgba(99, 102, 241, 0.1);
+            color: var(--primary); padding: 0.4rem 0.6rem; border-radius: 8px;
+            font-size: 0.7rem; font-weight: 800; cursor: pointer; transition: 0.2s;
+        }
+        .btn-gen:hover { background: var(--primary); color: white; }
+
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+        .shake-it { animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+        
+        .form-group.input-error .form-input { border-color: var(--danger) !important; background-color: rgba(244, 63, 94, 0.05) !important; box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.1) !important; }
+        .form-group.input-error::after {
+            content: ''; position: absolute; top: 40px; right: 15px; width: 6px; height: 6px;
+            background: var(--danger); border-radius: 50%; box-shadow: 0 0 8px rgba(244, 63, 94, 0.6); z-index: 50;
+        }
+        
+        .error-hint { font-size: 0.7rem; color: var(--danger); font-weight: 600; margin-top: 0.4rem; display: none; }
+
+        .btn {
+            flex: 1; padding: 1.1rem; border: none; border-radius: 16px;
+            font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.95rem;
+            cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+        }
+        .btn-prev { background: #f1f5f9; color: var(--text-muted); }
+        .btn-next { background: var(--primary-gradient); color: white; box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3); }
+        .btn:hover { transform: translateY(-3px); }
+
+        .btn-test { background: rgba(99, 102, 241, 0.05); border: 1px dashed var(--primary); color: var(--primary); font-size: 0.85rem; margin-bottom: 1.5rem; padding: 0.8rem; width: 100%; }
+        .btn-test.validated { background: #ecfdf5; border-color: var(--success); color: var(--success); border-style: solid; }
+        
+        .status-badge { font-size: 0.75rem; font-weight: 600; text-align: center; margin-bottom: 1rem; padding: 0.6rem; border-radius: 10px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="ambient-sphere sphere-1"></div>
+    <div class="ambient-sphere sphere-2"></div>
+
+    <div class="install-card">
+        <div class="logo-box">
+            <h1 class="install-title">Nexus Setup</h1>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">Poniendo todo en marcha</p>
+        </div>
+
+        {% if success %}
+        <div style="text-align: center; animation: paneIn 0.5s ease;">
+            <div style="width: 80px; height: 80px; background: #ecfdf5; color: #10b981; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.1); border: 2px solid #d1fae5;">
+                <i class="fas fa-check-double"></i>
+            </div>
+            <h2 style="font-family: 'Outfit'; margin-bottom: 0.5rem; font-size: 1.75rem; font-weight: 800;">¡Despegue exitoso!</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Nexus ha sido configurado y está listo para operar.</p>
+            
+            <div style="background: var(--bg); padding: 1rem; border-radius: 16px; margin-bottom: 2rem; font-size: 0.85rem; color: var(--text-muted); border: 1px solid var(--border);">
+                Redirigiendo a la plataforma en <span id="countdown" style="font-weight: 800; color: var(--primary); font-size: 1.1rem;">5</span> segundos...
+            </div>
+
+            <a href="{{ url_for('login') }}" class="btn btn-next" style="text-decoration: none; width: 100%;">
+                Acceder ahora <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <script nonce="{{ csp_nonce() }}">
+            let count = 5;
+            const timer = setInterval(() => {
+                count--;
+                document.getElementById('countdown').textContent = count;
+                if (count <= 0) {
+                    clearInterval(timer);
+                    window.location.href = "{{ url_for('login') }}";
+                }
+            }, 1000);
+        </script>
+        {% else %}
+
+        <div class="step-indicator">
+            <div class="step-progress-line" id="progressLine"></div>
+            <div class="step-item active" id="pill-1">
+                <div class="step-pill"><i class="fas fa-database"></i></div>
+                <span class="step-label">Database</span>
+            </div>
+            <div class="step-item" id="pill-2">
+                <div class="step-pill"><i class="fas fa-user-gear"></i></div>
+                <span class="step-label">Admin</span>
+            </div>
+        </div>
+
+        {% if error %}
+        <div style="background: #fff1f2; border: 1px solid #ffe4e6; color: var(--danger); padding: 1rem; border-radius: 12px; font-size: 0.8rem; margin-bottom: 1.5rem; animation: shake 0.5s;">
+            <i class="fas fa-exclamation-triangle"></i> {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('web_installer') }}" method="POST" id="installForm">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <!-- Step 1 -->
+            <div class="step-pane active" id="pane-1">
+                <div class="form-group">
+                    <label class="form-label">Servidor MySQL</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="db_host" class="form-input db-field" value="localhost" required>
+                        <i class="fas fa-server input-icon"></i>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="db_user" class="form-input db-field" placeholder="root" required>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <div class="input-wrapper">
+                            <input type="password" name="db_pass" class="form-input db-field" placeholder="••••••••" required>
+                            <i class="fas fa-lock input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nombre Base de Datos</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="db_name" class="form-input db-field" value="nexus" required>
+                        <i class="fas fa-database input-icon"></i>
+                    </div>
+                </div>
+
+                <button type="button" id="testBtn" class="btn btn-test"><i class="fas fa-vial"></i> Test de Conexión</button>
+                <div id="testStatus" class="status-badge"></div>
+
+                <label style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: var(--danger); font-weight: 700; cursor: pointer; padding: 0.5rem;">
+                    <input type="checkbox" name="drop_db" style="width: 18px; height: 18px; accent-color: var(--danger);">
+                    <span>Limpiar BD si ya existe</span>
+                </label>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-pane" id="pane-2">
+                <div class="form-group">
+                    <label class="form-label">Nombre admin</label>
+                    <div class="input-wrapper">
+                        <input type="text" name="admin_name" class="form-input" placeholder="Ej: Administrador Nexus" required>
+                        <i class="fas fa-id-badge input-icon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email admin</label>
+                    <div class="input-wrapper">
+                        <input type="email" name="admin_email" class="form-input" placeholder="admin@nexus.local" required>
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password Nexus</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="admin_pass" name="admin_pass" class="form-input" placeholder="Min. 12 carac + símbolo" required>
+                        <i class="fas fa-key input-icon"></i>
+                        <button type="button" class="btn-gen" id="genPassBtn">Generar</button>
+                    </div>
+                    <div id="pass-hint" class="error-hint">Min. 12 carac., letras, números y 1 símbolo.</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirmar Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="admin_confirm" class="form-input" placeholder="Repita contraseña" required>
+                        <i class="fas fa-check-double input-icon"></i>
+                    </div>
+                    <div id="confirm-hint" class="error-hint">Las contraseñas no coinciden.</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1.25rem; margin-top: 2rem;">
+                <button type="button" class="btn btn-prev" id="backBtn" style="display: none;"><i class="fas fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-next" id="nextBtn">Continuar <i class="fas fa-chevron-right"></i></button>
+                <button type="submit" class="btn btn-next" id="finishBtn" style="display: none;">Instalar <i class="fas fa-magic"></i></button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+
+    <script nonce="{{ csp_nonce() }}">
+        let step = 1;
+        let dbValidated = false;
+        const total = 2;
+        const nextBtn = document.getElementById('nextBtn');
+        const backBtn = document.getElementById('backBtn');
+        const finishBtn = document.getElementById('finishBtn');
+        const testBtn = document.getElementById('testBtn');
+        const testStatus = document.getElementById('testStatus');
+        const progressLine = document.getElementById('progressLine');
+        const adminPass = document.getElementById('admin_pass');
+        const adminConfirm = document.getElementById('admin_confirm');
+
+        document.querySelectorAll('.db-field').forEach(input => {
+            input.addEventListener('input', () => {
+                dbValidated = false;
+                testBtn.classList.remove('validated');
+                testStatus.style.display = 'none';
+            });
+        });
+
+        document.getElementById('genPassBtn')?.addEventListener('click', generatePass);
+
+        nextBtn.addEventListener('click', () => {
+            if (validate(step)) {
+                if (step === 1 && !dbValidated) {
+                    testBtn.classList.add('shake-it');
+                    testStatus.style.display = 'block';
+                    testStatus.style.background = '#fff1f2';
+                    testStatus.style.color = '#f43f5e';
+                    testStatus.innerHTML = '<i class="fas fa-hand"></i> Primero debe validar la conexión';
+                    setTimeout(() => testBtn.classList.remove('shake-it'), 500);
+                    return;
+                }
+                moveTo(step, step + 1);
+                step++;
+                refreshControls();
+            }
+        });
+
+        finishBtn.addEventListener('click', (e) => {
+            if (!validate(step)) {
+                e.preventDefault();
+            }
+        });
+
+        backBtn.addEventListener('click', () => {
+            moveTo(step, step - 1);
+            step--;
+            refreshControls();
+        });
+
+        function moveTo(f, t) {
+            document.getElementById(`pane-${f}`).classList.remove('active');
+            document.getElementById(`pill-${f}`).classList.remove('active');
+            if (t > f) document.getElementById(`pill-${f}`).classList.add('completed');
+            else document.getElementById(`pill-${t}`).classList.remove('completed');
+            
+            document.getElementById(`pane-${t}`).classList.add('active');
+            document.getElementById(`pill-${t}`).classList.add('active');
+            progressLine.style.width = t === 2 ? '100%' : '0%';
+        }
+
+        function refreshControls() {
+            backBtn.style.display = step === 1 ? 'none' : 'flex';
+            nextBtn.style.display = step === total ? 'none' : 'flex';
+            finishBtn.style.display = step === total ? 'flex' : 'none';
+        }
+
+        function validate(s) {
+            const pane = document.getElementById(`pane-${s}`);
+            const inputs = pane.querySelectorAll('input[required]');
+            let ok = true;
+
+            inputs.forEach(i => {
+                const group = i.closest('.form-group');
+                group.classList.remove('input-error', 'shake-it');
+                const hint = group.querySelector('.error-hint');
+                if (hint) hint.style.display = 'none';
+
+                if (!i.value.trim()) {
+                    void i.offsetWidth;
+                    group.classList.add('input-error', 'shake-it');
+                    ok = false;
+                }
+            });
+
+            if (s === 2 && ok) {
+                const pass = adminPass.value;
+                const conf = adminConfirm.value;
+                
+                // Strength check (12 chars, alnum + symbol)
+                const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(pass);
+                const hasAlnum = /[a-zA-Z]/.test(pass) && /[0-9]/.test(pass);
+                
+                if (pass.length < 12 || !hasSymbol || !hasAlnum) {
+                    adminPass.closest('.form-group').classList.add('input-error', 'shake-it');
+                    document.getElementById('pass-hint').style.display = 'block';
+                    ok = false;
+                }
+
+                if (pass !== conf) {
+                    adminConfirm.closest('.form-group').classList.add('input-error', 'shake-it');
+                    document.getElementById('confirm-hint').style.display = 'block';
+                    ok = false;
+                }
+            }
+            return ok;
+        }
+
+        function generatePass() {
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+            let retVal = "";
+            for (let i = 0, n = charset.length; i < 14; ++i) {
+                retVal += charset.charAt(Math.floor(Math.random() * n));
+            }
+            // Ensure at least one symbol if not random enough
+            if (!/[!@#$%^&*]/.test(retVal)) retVal += "!";
+            
+            adminPass.value = retVal;
+            adminConfirm.value = retVal;
+            adminPass.type = 'text'; // Show it temporarily
+            setTimeout(() => { adminPass.type = 'password'; }, 3000);
+            
+            // Clear errors
+            adminPass.closest('.form-group').classList.remove('input-error');
+            adminConfirm.closest('.form-group').classList.remove('input-error');
+        }
+
+        testBtn.addEventListener('click', async () => {
+            const host = document.querySelector('input[name="db_host"]').value;
+            const user = document.querySelector('input[name="db_user"]').value;
+            const pass = document.querySelector('input[name="db_pass"]').value;
+            const name = document.querySelector('input[name="db_name"]').value;
+
+            testBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Validando...';
+            testBtn.disabled = true;
+            testStatus.style.display = 'none';
+
+            try {
+                const res = await fetch('/test_db', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ db_host: host, db_user: user, db_pass: pass, db_name: name })
+                });
+                const data = await res.json();
+                testStatus.style.display = 'block';
+                testStatus.style.background = data.success ? '#ecfdf5' : '#fff1f2';
+                testStatus.style.color = data.success ? '#10b981' : '#f43f5e';
+                testStatus.innerHTML = `<i class="fas ${data.success ? 'fa-check-circle' : 'fa-times-circle'}"></i> ${data.message}`;
+                
+                if (data.success) {
+                    dbValidated = true;
+                    testBtn.classList.add('validated');
+                }
+            } catch (e) {
+                testStatus.style.display = 'block'; testStatus.style.color = '#f43f5e';
+                testStatus.innerHTML = '<i class="fas fa-times-circle"></i> Error de servidor';
+            } finally {
+                testBtn.innerHTML = '<i class="fas fa-vial"></i> Test de Conexión';
+                testBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

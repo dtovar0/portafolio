@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block title %}Plataformas | {{ portal_settings.portal_name or 'Portal TI' }}{% endblock %}
+
+{% block breadcrumbs %}
+<span class="breadcrumb-item" data-action="go-home">Inicio</span>
+<span>/</span>
+<span class="breadcrumb-item active">Plataformas</span>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/platforms.css') }}?v=30">
+{% endblock %}
+
+{% block content %}
+    <!-- Grid View Layer -->
+    <div id="gridView" class="area-catalog-view">
+        <div class="mt-1"></div>
+
+        <div id="areaGrid" class="area-card-grid">
+            <!-- Dynamic rendering -->
+        </div>
+        <div id="areaPagination" class="pagination-container mt-2 d-none">
+            <!-- Dynamic rendering -->
+        </div>
+</div>
+
+<!-- Drill-down View Layer -->
+<div id="drillDownView" class="drill-down-view d-none">
+    <div class="crud-bar">
+        <div class="search-container flex-1" >
+            <div class="search-input-icon text-muted">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <input type="text" placeholder="Filtrar servicios..." id="platformSearchSub" class="w-full search-input-with-icon">
+        </div>
+        <div class="d-flex items-center gap-075">
+            <button class="btn btn-action-edit" id="btnEditPlatform" data-action="platforms-edit-selected" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                <span>Modificar</span>
+            </button>
+            <button class="btn btn-action-delete" id="btnDeletePlatform" data-action="platforms-delete-selected" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                <span>Eliminar</span>
+            </button>
+            <div class="v-divider"></div>
+            <button class="btn btn-action-new" data-action="platforms-open-create-modal">
+                <i class="fas fa-plus" style="font-size: 1.1rem; margin-right: 8px;"></i>
+                <span>Nueva Plataforma</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <div class="table-responsive">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th class="col-cb">
+                            <input type="checkbox" id="selectAllPlatforms" style="cursor: pointer; width: 16px; height: 16px;">
+                        </th>
+                        <th style="width: 60px;">Imagen</th>
+                        <th>Servicio Digital</th>
+                        <th>Descripción</th>
+                        <th>Usuarios</th>
+                        <th>Estado</th>
+                        <th>Accesos</th>
+                    </tr>
+                </thead>
+                <tbody id="drillDownTableBody">
+                    <!-- Dynamic rendering -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Registro de Plataforma -->
+<div class="modal-overlay" id="platformModal" role="dialog" aria-modal="true" aria-labelledby="platformModalTitle" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header" style="background: var(--bg-input); border-bottom: 1px solid var(--border-color); padding: 1.5rem 2rem;">
+            <div>
+                <h3 id="platformModalTitle" class="font-outfit fs-xl fw-700 text-primary">Registrar Nueva Plataforma</h3>
+                <p class="fs-sm text-muted mb-0">Gestione el ecosistema digital de su organización.</p>
+            </div>
+            <button type="button" class="btn-close-modal" aria-label="Cerrar modal" data-action="platforms-close-modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step-progress-track">
+                <div class="step-progress-line" id="stepProgress"></div>
+            </div>
+            <div class="step-item active" id="item1">
+                <div class="step-pill"><i class="fas fa-file-invoice"></i></div>
+                <span class="step-label">Datos</span>
+            </div>
+            <div class="step-item" id="item2">
+                <div class="step-pill"><i class="fas fa-palette"></i></div>
+                <span class="step-label">Diseño</span>
+            </div>
+            <div class="step-item" id="item3">
+                <div class="step-pill"><i class="fas fa-users"></i></div>
+                <span class="step-label">Usuarios</span>
+            </div>
+        </div>
+
+        <form id="createPlatformForm" data-action-submit="platform-save" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <!-- Step 1: Datos -->
+            <div id="step1" class="modal-step active">
+                <div class="form-group">
+                    <label class="form-label">Nombre de Plataforma</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-cube"></i>
+                        <input type="text" name="name" class="form-control" placeholder="Ej: Figma, AWS..." required>
+                    </div>
+                    <input type="hidden" name="area_id" id="modalAreaHidden">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <textarea name="description" class="form-control" rows="3" style="resize: none;" placeholder="Propósito de la herramienta..." required></textarea>
+                </div>
+
+                <div class="form-group mb-15">
+                    <label class="form-label uppercase tracking-wider fs-700 text-muted mb-05">Enlace de Acceso</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-link"></i>
+                        <input type="url" name="direct_link" id="directLinkInput" class="form-control" placeholder="https://miplataforma.com" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Diseño -->
+            <div id="step2" class="modal-step">
+                <div class="d-flex justify-between align-items-center mb-15">
+                    <label class="form-label mb-0 fs-md fw-700 text-primary">Identidad Visual</label>
+                    <div class="nexus-btn-group">
+                        <button type="button" class="btn active" id="btnModeImage" data-action="platforms-visual-mode" data-mode="image">
+                            <i class="fas fa-image mr-05"></i> Imagen / Logo
+                        </button>
+                        <button type="button" class="btn" id="btnModeIcon" data-action="platforms-visual-mode" data-mode="icon">
+                            <i class="fas fa-shapes mr-05"></i> Icono IT
+                        </button>
+                    </div>
+                </div>
+
+                <div class="visual-content-container mb-2" style="height: 100px; border: 1.5px solid var(--border-color); border-radius: 16px; overflow: hidden; background: var(--bg-input);">
+                    <!-- Image Upload Part -->
+                    <div id="logoUploadZone" class="premium-upload-zone" data-action="platforms-open-logo-picker" style="height: 100%; border: none; background: transparent; padding: 0;">
+                        <div id="imagePreview" class="upload-preview-container">
+                            <div class="upload-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+                                <div class="upload-icon-circle" style="background: var(--accent-indigo-bg); color: var(--primary-color); width: 36px; height: 36px; margin: 0;">
+                                    <i class="fas fa-cloud-upload-alt fa-sm"></i>
+                                </div>
+                                <div class="text-left">
+                                    <span class="d-block fw-800 text-primary fs-sm">Subir Logo o Imagen</span>
+                                    <span class="d-block fs-xs text-muted">Arrastre aquí para buscar</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" name="logo" id="logoInput" accept="image/*" class="d-none">
+                    </div>
+
+                    <!-- Icon Grid Part -->
+                    <div id="iconSelectorZone" class="icon-grid d-none scrollable-custom" style="height: 100%; padding: 0; display: grid; grid-template-columns: repeat(15, 1fr); gap: 0; align-content: stretch; background: var(--bg-card);">
+                        <!-- JS Populated -->
+                    </div>
+                </div>
+                <input type="hidden" name="icon" id="selectedIconInput" value="box">
+
+                <!-- NEW: Real-time Personalization -->
+                <div class="personalization-grid">
+                    <div class="preview-mini-container">
+                        <div class="d-flex items-center gap-05 mb-075">
+                            <i class="fas fa-eye text-muted fs-xs"></i>
+                            <label class="form-label mb-0 fs-xs text-muted uppercase fs-700">Vista Previa en Vivo</label>
+                        </div>
+                        <div id="platformPreviewCard" class="platform-preview-card" style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem; width: 100%; max-width: 320px;">
+                            <div class="preview-icon-wrapper" id="previewIconWrapper" style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="preview-text-content" style="flex: 1; text-align: left;">
+                                <div id="previewAreaTag" style="font-size: 0.65rem; font-weight: 800; text-transform: uppercase; opacity: 0.8; letter-spacing: 0.05em; margin-bottom: 2px;">ÁREA DE TI</div>
+                                <div id="previewPlatformName" style="font-weight: 700; font-size: 1rem; line-height: 1.2;">Nombre Plataforma</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="color-controls-container">
+                        <div class="color-control-item">
+                            <label class="form-label mb-05 fs-xs text-muted uppercase fs-700">Fondo de Tarjeta</label>
+                            <div class="premium-color-input input-with-icon" data-action="platforms-trigger-color" data-target="bgColorPicker">
+                                <i class="fas fa-palette"></i>
+                                <div class="color-swatch" id="bgSwatch" style="background: #6366f1; margin: 0 0.5rem 0 2rem;"></div>
+                                <input type="text" name="bg_color" id="bgColorInput" value="#6366f1" placeholder="#000000" class="form-control" style="padding-left: 0.25rem !important; border: none; box-shadow: none; background: transparent; height: 32px;">
+                                <input type="color" id="bgColorPicker" value="#6366f1" class="js-sync-color" data-text-input-id="bgColorInput" data-swatch-id="bgSwatch">
+                            </div>
+                        </div>
+                        <div class="color-control-item d-none" id="iconColorControlRow">
+                            <label class="form-label mb-05 fs-xs text-muted uppercase fs-700">Color del Icono</label>
+                            <div class="premium-color-input input-with-icon" data-action="platforms-trigger-color" data-target="textColorPicker">
+                                <i class="fas fa-tint"></i>
+                                <div class="color-swatch" id="textSwatch" style="background: #ffffff; margin: 0 0.5rem 0 2rem;"></div>
+                                <input type="text" name="text_color" id="textColorInput" value="#ffffff" placeholder="#FFFFFF" class="form-control" style="padding-left: 0.25rem !important; border: none; box-shadow: none; background: transparent; height: 32px;">
+                                <input type="color" id="textColorPicker" value="#ffffff" class="js-sync-color" data-text-input-id="textColorInput" data-swatch-id="textSwatch">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step3" class="modal-step">
+                <div class="form-group mb-0">
+                    <label class="form-label uppercase tracking-wider fs-700 text-muted mb-1">Privilegios de Acceso</label>
+                    <div class="picklist-modern-container" style="border: 1.5px solid var(--border-color); border-radius: 16px; overflow: hidden; background: var(--bg-card);">
+                        <div class="picklist-pane" style="height: 380px;">
+                            <div class="picklist-pane-header" style="background: var(--bg-input); font-weight: 800; font-size: 0.75rem; color: var(--text-muted); padding: 1rem;">
+                                <i class="fas fa-users-slash mr-05"></i> DISPONIBLES
+                            </div>
+                            <div class="picklist-search-box" style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                                <div class="input-with-icon">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Filtrar integrantes..." class="js-picklist-filter" data-list-id="availableList" style="height: 36px; border-radius: 8px;">
+                                </div>
+                            </div>
+                            <div class="picklist-body scrollable-custom" id="availableList" style="padding: 0.5rem;"></div>
+                        </div>
+                        
+                        <div class="picklist-divider" style="background: var(--bg-input); width: 44px; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color);">
+                            <i class="fas fa-chevron-right text-muted opacity-50"></i>
+                        </div>
+
+                        <div class="picklist-pane" style="height: 380px;">
+                            <div class="picklist-pane-header" style="background: var(--bg-input); font-weight: 800; font-size: 0.75rem; color: var(--primary-color); padding: 1rem;">
+                                <i class="fas fa-user-check mr-05"></i> CON ACCESO
+                            </div>
+                            <div class="picklist-search-box" style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                                <div class="input-with-icon">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Filtrar autorizados..." class="js-picklist-filter" data-list-id="assignedList" style="height: 36px; border-radius: 8px;">
+                                </div>
+                            </div>
+                            <div class="picklist-body scrollable-custom" id="assignedList" style="padding: 0.5rem;"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="users" id="selectedUsersInput">
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-between gap-1 mt-1">
+                <!-- Left Side Buttons -->
+                <div>
+                    <button type="button" class="btn btn-ghost" id="btnCancel" data-action="platforms-close-modal">Cancelar</button>
+                    <button type="button" class="btn btn-premium-nav btn-back-style d-none" id="btnBack" data-action="platforms-step-back">Anterior</button>
+                </div>
+                <!-- Right Side Buttons -->
+                <div>
+                    <button type="button" class="btn btn-primary btn-premium-nav" id="btnNext" data-action="platforms-step-next">Siguiente</button>
+                    <button type="submit" class="btn btn-primary btn-premium-nav d-none" id="btnSubmit">Finalizar Registro <i class="fas fa-check-circle ml-05"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script nonce="{{ csp_nonce() }}" src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script nonce="{{ csp_nonce() }}">
+    window.__platformData = {{ grouped_platforms|tojson }};
+    window.__areaData = {{ area_list|tojson }};
+    window.__allUsers = {{ all_users|tojson }};
+    window.__urls = { index: "{{ url_for('index') }}" };
+</script>
+<script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/platforms-page.js') }}"></script>
+{% endblock %}

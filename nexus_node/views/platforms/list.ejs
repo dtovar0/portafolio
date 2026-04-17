@@ -1,0 +1,219 @@
+<div id="gridView" class="area-catalog-view">
+    <div class="mt-1"></div>
+
+    <div id="areaGrid" class="area-card-grid">
+    </div>
+    <div id="areaPagination" class="pagination-container mt-2 d-none">
+    </div>
+</div>
+
+<div id="drillDownView" class="drill-down-view d-none">
+    <div class="crud-bar">
+        <div class="search-container flex-1">
+            <div class="search-input-icon text-muted">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <input type="text" placeholder="Filtrar servicios..." id="platformSearchSub" class="w-full search-input-with-icon">
+        </div>
+        <div class="d-flex items-center gap-075">
+            <button class="btn btn-action-edit" id="btnEditPlatform" data-action="platforms-edit-selected" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                <span>Modificar</span>
+            </button>
+            <button class="btn btn-action-delete" id="btnDeletePlatform" data-action="platforms-delete-selected" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                <span>Eliminar</span>
+            </button>
+            <div class="v-divider"></div>
+            <button class="btn btn-action-new" data-action="platforms-open-create-modal">
+                <i class="fas fa-plus" style="font-size: 1.1rem; margin-right: 8px;"></i>
+                <span>Nueva Plataforma</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <div class="table-responsive">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th class="col-cb">
+                            <input type="checkbox" id="selectAllPlatforms" style="cursor: pointer; width: 16px; height: 16px;">
+                        </th>
+                        <th style="width: 60px;">Imagen</th>
+                        <th>Servicio Digital</th>
+                        <th>Descripción</th>
+                        <th>Usuarios</th>
+                        <th>Estado</th>
+                        <th>Accesos</th>
+                    </tr>
+                </thead>
+                <tbody id="drillDownTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="platformModal" role="dialog" aria-modal="true" aria-labelledby="platformModalTitle" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="platformModalTitle" class="font-outfit fs-xl fw-700">Nueva Plataforma</h3>
+            <button type="button" class="btn-close-modal" aria-label="Cerrar modal" data-action="platforms-close-modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step-progress-track">
+                <div class="step-progress-line" id="stepProgress"></div>
+            </div>
+            <div class="step-item active" id="item1">
+                <div class="step-pill"><i class="fas fa-file-invoice"></i></div>
+                <span class="step-label">Datos</span>
+            </div>
+            <div class="step-item" id="item2">
+                <div class="step-pill"><i class="fas fa-palette"></i></div>
+                <span class="step-label">Diseño</span>
+            </div>
+            <div class="step-item" id="item3">
+                <div class="step-pill"><i class="fas fa-users"></i></div>
+                <span class="step-label">Usuarios</span>
+            </div>
+        </div>
+
+        <form id="createPlatformForm" data-action-submit="platform-save" enctype="multipart/form-data">
+            <div id="step1" class="modal-step active">
+                <div class="form-group">
+                    <label class="form-label">Nombre de Plataforma</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-cube"></i>
+                        <input type="text" name="name" class="form-control" placeholder="Ej: Figma, AWS..." required>
+                    </div>
+                    <input type="hidden" name="area_id" id="modalAreaHidden">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <textarea name="description" class="form-control" rows="3" style="resize: none;" placeholder="Propósito de la herramienta..." required></textarea>
+                </div>
+
+                <div class="form-group mb-1">
+                    <label class="form-label">Link Directo</label>
+                    <div class="input-group-premium">
+                        <i class="fas fa-link"></i>
+                        <input type="url" name="direct_link" id="directLinkInput" class="form-control" placeholder="https://..." required>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step2" class="modal-step">
+                <div class="d-flex justify-between align-items-center mb-15">
+                    <label class="form-label mb-0 fs-md fw-700 text-primary">Identidad Visual</label>
+                    <div class="nexus-btn-group">
+                        <button type="button" class="btn active" id="btnModeImage" data-action="platforms-visual-mode" data-mode="image">
+                            <i class="fas fa-image mr-05"></i> Imagen / Logo
+                        </button>
+                        <button type="button" class="btn" id="btnModeIcon" data-action="platforms-visual-mode" data-mode="icon">
+                            <i class="fas fa-shapes mr-05"></i> Icono IT
+                        </button>
+                    </div>
+                </div>
+
+                <div class="visual-content-container mb-2">
+                    <div id="logoUploadZone" class="premium-upload-zone" data-action="platforms-open-logo-picker">
+                        <div id="imagePreview" class="upload-preview-container">
+                            <div class="upload-placeholder">
+                                <div class="upload-icon-circle">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                </div>
+                                <div class="mt-05 text-center">
+                                    <span class="d-block fw-800 text-primary fs-sm">Subir Logo Corporativo</span>
+                                    <span class="d-block fs-700 text-muted" style="margin-top: 2px;">.png, .jpg, .svg (Máx 2MB)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" name="logo" id="logoInput" accept="image/*" class="d-none">
+                    </div>
+
+                    <div id="iconSelectorZone" class="icon-grid d-none"></div>
+                </div>
+                <input type="hidden" name="icon" id="selectedIconInput" value="box">
+
+                <div class="personalization-grid">
+                    <div class="preview-mini-container">
+                        <div class="d-flex items-center gap-05 mb-075">
+                            <i class="fas fa-eye text-muted fs-xs"></i>
+                            <label class="form-label mb-0 fs-xs text-muted uppercase fs-700">Vista Previa en Vivo</label>
+                        </div>
+                        <div id="platformPreviewCard" class="platform-preview-card">
+                            <div class="preview-icon-wrapper" id="previewIconWrapper">
+                                <i class="fas fa-box"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="color-controls-container">
+                        <div class="color-control-item">
+                            <label class="form-label mb-05 fs-xs text-muted uppercase fs-700">Fondo de Tarjeta</label>
+                            <div class="premium-color-input" data-action="platforms-trigger-color" data-target="bgColorPicker">
+                                <div class="color-swatch" id="bgSwatch" style="background: #6366f1;"></div>
+                                <input type="text" name="bg_color" id="bgColorInput" value="#6366f1" placeholder="#000000">
+                                <input type="color" id="bgColorPicker" value="#6366f1" class="js-sync-color" data-text-input-id="bgColorInput" data-swatch-id="bgSwatch">
+                            </div>
+                        </div>
+                        <div class="color-control-item d-none" id="iconColorControlRow">
+                            <label class="form-label mb-05 fs-xs text-muted uppercase fs-700">Color del Icono</label>
+                            <div class="premium-color-input" data-action="platforms-trigger-color" data-target="textColorPicker">
+                                <div class="color-swatch" id="textSwatch" style="background: #ffffff;"></div>
+                                <input type="text" name="text_color" id="textColorInput" value="#ffffff" placeholder="#FFFFFF">
+                                <input type="color" id="textColorPicker" value="#ffffff" class="js-sync-color" data-text-input-id="textColorInput" data-swatch-id="textSwatch">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step3" class="modal-step">
+                <div class="form-group">
+                    <label class="form-label">Asignar Usuarios</label>
+                    <div class="picklist-modern-container">
+                        <div class="picklist-pane">
+                            <div class="picklist-pane-header"><i class="fas fa-users-slash"></i> Disponibles</div>
+                            <div class="picklist-search-box"><i class="fas fa-search"></i><input type="text" placeholder="Buscar..." class="js-picklist-filter" data-list-id="availableList"></div>
+                            <div class="picklist-body scrollable-custom" id="availableList"></div>
+                        </div>
+
+                        <div class="picklist-divider"><i class="fas fa-exchange-alt"></i></div>
+
+                        <div class="picklist-pane">
+                            <div class="picklist-pane-header"><i class="fas fa-user-check"></i> Con Acceso</div>
+                            <div class="picklist-search-box"><i class="fas fa-search"></i><input type="text" placeholder="Buscar..." class="js-picklist-filter" data-list-id="assignedList"></div>
+                            <div class="picklist-body scrollable-custom" id="assignedList"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="users" id="selectedUsersInput">
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-between gap-1 mt-1">
+                <div>
+                    <button type="button" class="btn btn-ghost" id="btnCancel" data-action="platforms-close-modal">Cancelar</button>
+                    <button type="button" class="btn btn-premium-nav btn-back-style d-none" id="btnBack" data-action="platforms-step-back">Anterior</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary btn-premium-nav" id="btnNext" data-action="platforms-step-next">Siguiente</button>
+                    <button type="submit" class="btn btn-primary btn-premium-nav d-none" id="btnSubmit">Finalizar Registro <i class="fas fa-check-circle ml-05"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+    window.__platformData = <%- JSON.stringify(typeof grouped_platforms !== 'undefined' ? grouped_platforms : {}) %>;
+    window.__areaData = <%- JSON.stringify(typeof area_list !== 'undefined' ? area_list : []) %>;
+    window.__allUsers = <%- JSON.stringify(typeof all_users !== 'undefined' ? all_users : []) %>;
+    window.__urls = { index: '/' };
+</script>
+<script src="/static/js/platforms-page.js?v=32"></script>

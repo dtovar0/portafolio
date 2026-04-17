@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% block title %}Notificaciones | {{ portal_settings.portal_name or 'Portal TI' }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}?v=2">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}?v=11">
+{% endblock %}
+
+{% block breadcrumbs %}
+<span class="breadcrumb-item" data-action="go-home">Inicio</span>
+<span>/</span>
+<span class="breadcrumb-item">Sistema</span>
+<span>/</span>
+<span class="breadcrumb-item active">Notificaciones</span>
+{% endblock %}
+
+{% block content %}
+<div class="settings-page-container w-full">
+    <!-- Premium Tab Navigation -->
+    <div class="settings-tabs">
+        <button class="settings-tab active" data-action="switch-tab" data-tab="smtpTab">
+            <i class="fas fa-paper-plane"></i> Servidor SMTP
+        </button>
+        <button class="settings-tab" data-action="switch-tab" data-tab="templateTab">
+            <i class="fas fa-envelope-open-text"></i> Plantilla de Correo
+        </button>
+    </div>
+
+    <form id="notificationSettingsForm" class="settings-form" data-premium-validate novalidate>
+        <!-- Tab: SMTP -->
+        <div id="smtpTab" class="tab-content active">
+            <div class="settings-card">
+                <div class="settings-section-header">
+                    <div class="header-info">
+                        <h3 class="settings-title-lg">Correo Saliente</h3>
+                        <p class="settings-helper-text">Configura el servidor para el envío automático de notificaciones.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button type="button" class="btn btn-action-test" data-action="send-test-prompt">
+                            <i class="fas fa-paper-plane"></i> Probar Envío
+                        </button>
+                        <div class="v-divider"></div>
+                        <button type="submit" class="btn btn-action-new" data-action="save-notifications">
+                            <i class="fas fa-save"></i>
+                            <span>Guardar Cambios</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="branding-content-section">
+                    <!-- Section: SERVIDOR SMTP -->
+                    <div class="section-label"><i class="fas fa-server"></i> Conexión SMTP</div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">HOST / SERVIDOR</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-network-wired"></i>
+                                <input type="text" name="smtp_host" class="form-control field-tech" value="{{ settings.smtp_host or '' }}" placeholder="smtp.gmail.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-row">
+                            <div class="form-group flex-1">
+                                <label class="form-label">PUERTO</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-plug"></i>
+                                    <input type="number" name="smtp_port" class="form-control no-spin" value="{{ settings.smtp_port or '587' }}" min="1" max="65535" required>
+                                </div>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label class="form-label">ENCRIPTACIÓN</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <select name="smtp_encryption" class="form-control">
+                                        <option value="NONE" {% if settings.smtp_encryption == 'NONE' %}selected{% endif %}>Ninguno</option>
+                                        <option value="SSL" {% if settings.smtp_encryption == 'SSL' %}selected{% endif %}>SSL</option>
+                                        <option value="STARTTLS" {% if settings.smtp_encryption == 'STARTTLS' or not settings %}selected{% endif %}>STARTTLS</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2 mb-2">
+                        <div class="settings-toggle-card">
+                            <div class="toggle-card-info">
+                                <label for="smtpAuthToggle" class="toggle-label">Autenticación Requerida</label>
+                                <p class="settings-helper-text">Habilitar si el servidor requiere usuario y contraseña.</p>
+                            </div>
+                            <div class="toggle-card-action">
+                                <label class="toggle-switch-ios">
+                                    <input type="checkbox" id="smtpAuthToggle" name="smtp_auth" {% if settings.smtp_auth %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <!-- Section: CREDENCIALES -->
+                    <div id="credentialsGrid" class="branding-content-section">
+                        <div class="section-label mt-2"><i class="fas fa-user-shield"></i> Credenciales de Acceso</div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label">USUARIO / EMAIL</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="email" name="smtp_user" class="form-control field-tech" value="{{ settings.smtp_user or '' }}" placeholder="notificaciones@empresa.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">CONTRASEÑA</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-key"></i>
+                                    <input type="password" name="smtp_password" class="form-control" placeholder="••••••••••••">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: REMITENTE -->
+                    <div class="section-label mt-2"><i class="fas fa-id-card"></i> Identidad del Remitente</div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="form-label">NOMBRE A MOSTRAR</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-signature"></i>
+                                <input type="text" name="smtp_from_name" class="form-control" value="{{ settings.smtp_from_name or '' }}" placeholder="Nexus Access">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">EMAIL REMITENTE</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-at"></i>
+                                <input type="email" name="smtp_from_email" class="form-control field-tech" value="{{ settings.smtp_from_email or '' }}" placeholder="no-reply@empresa.com">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Plantilla -->
+        <div id="templateTab" class="tab-content d-none">
+            <div class="settings-card">
+                <div class="settings-section-header">
+                    <div class="header-info">
+                        <h3 class="settings-title-lg">Plantilla de Notificación</h3>
+                        <p class="settings-helper-text">Personaliza el mensaje que recibirán los usuarios sobre sus solicitudes.</p>
+                    </div>
+                    <button type="submit" class="btn btn-action-new" data-action="save-notifications">
+                        <i class="fas fa-save"></i>
+                        <span>Guardar Plantilla</span>
+                    </button>
+                </div>
+                
+                <div class="form-group mb-25">
+                    <label class="form-label">Asunto del Correo</label>
+                    <input type="text" name="email_subject" class="form-control" value="{{ settings.email_subject or 'Nueva Solicitud de Acceso - Portal Nexus' }}" required>
+                </div>
+
+                <div class="form-group flex-1 d-flex flex-col">
+                    <label class="form-label">Cuerpo del Mensaje (HTML/Texto)</label>
+                    <textarea name="email_body" class="form-control settings-editor flex-1" style="min-height: 280px;" required>{{ settings.email_body }}</textarea>
+                </div>
+
+                <div class="variables-guide mt-2 p-15 rounded-lg" style="background: var(--bg-input); border: 1px solid var(--border-color);">
+                    <div class="ガイド-header mb-1 d-flex items-center gap-05">
+                        <i class="fas fa-code text-primary"></i>
+                        <span class="fs-xs fw-800 text-muted uppercase tracking-wider">Variables Dinámicas</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-05">
+                        <span class="badge badge-info-subtle">{user_name}</span>
+                        <span class="badge badge-info-subtle">{platform_name}</span>
+                        <span class="badge badge-info-subtle">{status}</span>
+                        <span class="badge badge-info-subtle">{request_date}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!-- Modal: Probar Envío -->
+<div id="testEmailModal" class="modal-overlay" role="dialog" aria-hidden="true">
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h3 class="settings-title-md">Probar Configuración</h3>
+            <button type="button" class="btn-close-modal" data-action="close-modal" data-target="testEmailModal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="settings-info-banner mb-2">
+            <i class="fas fa-info-circle"></i>
+            <p>Se enviará un correo de prueba para validar que la configuración SMTP sea correcta.</p>
+        </div>
+
+        <form id="testEmailForm" novalidate>
+            <div class="form-group">
+                <label class="form-label">Correo Destinatario</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="testEmailRecipient" class="form-control" placeholder="ejemplo@correo.com" required>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer d-flex justify-between mt-2">
+            <button type="button" class="btn btn-ghost" data-action="close-modal" data-target="testEmailModal">Cancelar</button>
+            <button type="button" class="btn btn-primary" data-action="submit-test-email">
+                <i class="fas fa-paper-plane mr-05"></i> Enviar Prueba
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script nonce="{{ csp_nonce() }}">
+    window.__datos = {
+        urls: {
+            update: "{{ url_for('update_notification_settings') }}",
+            test: "{{ url_for('test_email') }}",
+            home: "{{ url_for('index') }}"
+        }
+    };
+</script>
+<script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/notifications-page.js') }}?v=11"></script>
+{% endblock %}

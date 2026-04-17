@@ -1,0 +1,323 @@
+{% extends "base.html" %}
+
+{% block title %}Áreas | {{ portal_settings.portal_name or 'Portal TI' }}{% endblock %}
+
+{% block breadcrumbs %}
+<span class="breadcrumb-item" data-action="go-home">Inicio</span>
+<span>/</span>
+<span class="breadcrumb-item">Catálogo</span>
+<span>/</span>
+<span class="breadcrumb-item active">Áreas</span>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/platforms.css') }}">
+<style>
+    .icon-picker-grid { grid-template-columns: repeat(12, 1fr); gap: 0.35rem; }
+    .color-picker-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
+    .color-option { 
+        height: 32px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; 
+        transition: 0.2s; position: relative; overflow: hidden;
+    }
+    .color-option:hover { transform: scale(1.05); }
+    .color-option.active { border-color: var(--text-primary); box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2); }
+    .color-option.active::after {
+        content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900;
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        color: white; font-size: 0.7rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="crud-bar d-flex justify-between items-center mb-1 gap-1">
+    <div class="search-container flex-1" >
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="areaSearch" placeholder="Buscar por nombre de área..." class="w-full search-input-with-icon">
+    </div>
+    <div class="crud-actions d-flex gap-075 items-center">
+        <button class="btn btn-action-edit" id="btnEditArea" data-action="areas-edit-selected" title="Modificar seleccionado" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            <span>Modificar</span>
+        </button>
+        <button class="btn btn-action-delete" id="btnDeleteArea" data-action="areas-delete-selected" title="Eliminar seleccionado" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            <span>Eliminar</span>
+        </button>
+        <div class="v-divider"></div>
+        <button class="btn btn-action-new" data-action="areas-open-create-modal">
+            <i class="fas fa-plus"></i>
+            <span>Nueva Área</span>
+        </button>
+    </div>
+</div>
+
+<div class="table-card">
+    <div class="table-responsive">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th class="col-cb">
+                        <input type="checkbox" id="selectAllAreas" data-action="areas-select-all" style="cursor: pointer;">
+                    </th>
+                    <th>Ícono</th>
+                    <th>Área</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Usuarios</th>
+                    <th>Plataformas</th>
+                </tr>
+            </thead>
+            <tbody id="areasTableBody">
+                <!-- Dinámico -->
+            </tbody>
+        </table>
+    </div>
+    <div id="areasPagination" class="pagination-container">
+        <!-- Dinámico -->
+    </div>
+</div>
+
+<!-- Modal for Adding Area -->
+<div id="areaModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="addAreaModalTitle" aria-hidden="true">
+    <div class="modal-content pos-relative" >
+        <div class="modal-header">
+            <div>
+                <h3 class="font-outfit fs-xl fw-700 text-primary" id="addAreaModalTitle">Nueva Área</h3>
+                <p class="fs-sm text-muted" style="margin: 0.25rem 0 0 0;">Defina una nueva área organizacional y su identidad visual.</p>
+            </div>
+            <button type="button" class="btn-close-modal" aria-label="Cerrar modal" data-action="areas-close-create-modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="step-indicator mb-2">
+            <div class="step-progress-track">
+                <div class="step-progress-line" id="addAreaProgress"></div>
+            </div>
+            <div class="step-item active" id="addStep1_pill">
+                <div class="step-pill">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <span class="step-label">Datos</span>
+            </div>
+            <div class="step-item" id="addStep2_pill">
+                <div class="step-pill">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <span class="step-label">Diseño</span>
+            </div>
+            <div class="step-item" id="addStep3_pill">
+                <div class="step-pill">
+                    <i class="fas fa-users"></i>
+                </div>
+                <span class="step-label">Usuarios</span>
+            </div>
+        </div>
+
+        <form id="addAreaForm"  data-premium-validate novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <!-- Step 1: Data -->
+            <div id="addAreaStep1" class="modal-step active">
+                <div class="form-group mb-15">
+                    <label class="modal-form-label">Nombre del Área</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-sitemap"></i>
+                        <input type="text" name="name" id="addAreaNameInput" class="form-control modal-form-input" required placeholder="Ej: Recursos Humanos">
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="modal-form-label">Descripción</label>
+                    <textarea name="description" id="addAreaDescInput" class="form-control modal-form-textarea" rows="4" placeholder="¿De qué se encarga este departamento?" required></textarea>
+                </div>
+                <div class="mb-1">
+                    <div class="input-toggle-wrapper modal-toggle-row modal-toggle-row-lg">
+                        <span class="toggle-title modal-toggle-title-uppercase">Estado: <span id="addAreaStatusText" style="color: var(--primary-color);">Activo</span></span>
+                        <label class="toggle-switch-ios">
+                            <input type="checkbox" id="addAreaStatusToggle" name="status_toggle" checked class="js-area-status-toggle" data-target-id="addAreaStatusText" data-on-label="Activo" data-off-label="Deshabilitado">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Diseño -->
+            <div id="addAreaStep2" class="modal-step">
+                <div class="mb-15">
+                    <label class="modal-form-label">Ícono del Área (12x3)</label>
+                    <div class="icon-picker-grid" id="addIconGroup" style="grid-template-columns: repeat(12, 1fr);">
+                        <!-- Iconos dinámicos -->
+                    </div>
+                </div>
+                <div class="mb-15">
+                    <label class="modal-form-label">Color del Área (12x2)</label>
+                    <input type="hidden" name="color" id="addAreaColorInput" value="linear-gradient(135deg, #6366f1, #818cf8)">
+                    <div class="color-picker-grid" id="addColorGroup" style="grid-template-columns: repeat(12, 1fr);">
+                        <!-- Colores dinámicos -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Usuarios -->
+            <div id="addAreaStep3" class="modal-step">
+                <div class="form-group">
+                    <div class="picklist-modern-container">
+                        <div class="picklist-pane">
+                            <div class="picklist-pane-header">
+                                <i class="fas fa-user-plus"></i> Disponibles
+                            </div>
+                            <div class="picklist-body scrollable-custom picklist-h-300" id="addAreaUsersAvailableList"></div>
+                        </div>
+                        
+                        <div class="picklist-divider">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+
+                        <div class="picklist-pane">
+                            <div class="picklist-pane-header">
+                                <i class="fas fa-user-check"></i> Asignados
+                            </div>
+                            <div class="picklist-body scrollable-custom picklist-h-300" id="addAreaUsersSelectedList"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="selected_users" id="selectedAreaUsersInput">
+                </div>
+            </div>
+
+            <div class="modal-footer modal-footer-actions mt-2">
+                <button type="button" class="btn btn-ghost" id="btnAddBack" style="display: none;" data-action="areas-add-step-back">Anterior</button>
+                <div class="flex-1"></div>
+                <button type="button" class="btn btn-primary btn-primary-filled" id="btnAddNext" data-action="areas-add-step-next">Continuar <i class="fas fa-arrow-right ml-05"></i></button>
+                <button type="submit" class="btn btn-primary btn-primary-filled" id="btnAddSubmit" style="display: none;" data-action="areas-save-new">Crear Área <i class="fas fa-check ml-05"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal for Editing Area -->
+<div id="editAreaModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="editAreaModalTitle" aria-hidden="true">
+    <div class="modal-content pos-relative" >
+        <div class="modal-header">
+            <h3 id="editAreaModalTitle" class="font-outfit fs-xl fw-700 text-primary">Modificar Área</h3>
+            <button type="button" class="btn-close-modal" aria-label="Cerrar modal" data-action="areas-close-edit-modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <!-- Progress Indicator Edit -->
+        <div class="step-indicator mb-2">
+            <div class="step-progress-track">
+                <div class="step-progress-line" id="editAreaProgress"></div>
+            </div>
+            <div class="step-item active" id="editStep1_pill">
+                <div class="step-pill">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <span class="step-label">Datos</span>
+            </div>
+            <div class="step-item" id="editStep2_pill">
+                <div class="step-pill">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <span class="step-label">Diseño</span>
+            </div>
+            <div class="step-item" id="editStep3_pill">
+                <div class="step-pill">
+                    <i class="fas fa-users"></i>
+                </div>
+                <span class="step-label">Usuarios</span>
+            </div>
+        </div>
+
+        <form id="editAreaForm"  data-premium-validate novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" id="editAreaId">
+            
+            <!-- Step 1: Data -->
+            <div id="editAreaStep1" class="modal-step active">
+                <div class="form-group mb-15">
+                    <label class="modal-form-label">Nombre del Área</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-sitemap"></i>
+                        <input type="text" id="editAreaName" name="name" class="form-control modal-form-input" required>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="modal-form-label">Descripción</label>
+                    <textarea id="editAreaDescription" name="description" class="form-control modal-form-textarea" rows="4" required></textarea>
+                </div>
+                <div class="mb-1">
+                    <div class="input-toggle-wrapper modal-toggle-row modal-toggle-row-lg">
+                        <span class="toggle-title modal-toggle-title-uppercase">Estado: <span id="editAreaStatusText" style="color: var(--primary-color);">Activo</span></span>
+                        <label class="toggle-switch-ios">
+                            <input type="checkbox" id="editAreaStatusToggle" name="status_toggle" checked class="js-area-status-toggle" data-target-id="editAreaStatusText" data-on-label="Activo" data-off-label="Deshabilitado">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Diseño -->
+            <div id="editAreaStep2" class="modal-step">
+                <div class="mb-15">
+                    <label class="modal-form-label">Ícono del Área (12x3)</label>
+                    <div class="icon-picker-grid" id="editIconGroup" style="grid-template-columns: repeat(12, 1fr);">
+                        <!-- Iconos dinámicos -->
+                    </div>
+                </div>
+                <div class="mb-15">
+                    <label class="modal-form-label">Color del Área (12x2)</label>
+                    <input type="hidden" name="color" id="editAreaColorInput">
+                    <div class="color-picker-grid" id="editColorGroup" style="grid-template-columns: repeat(12, 1fr);">
+                        <!-- Colores dinámicos -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Usuarios -->
+            <div id="editAreaStep3" class="modal-step">
+                <div class="form-group">
+                    <div class="picklist-modern-container">
+                        <div class="picklist-pane">
+                            <div class="picklist-pane-header">
+                                <i class="fas fa-user-plus"></i> Disponibles
+                            </div>
+                            <div class="picklist-body scrollable-custom picklist-h-300" id="editAreaUsersAvailableList"></div>
+                        </div>
+                        
+                        <div class="picklist-divider">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+
+                        <div class="picklist-pane">
+                            <div class="picklist-pane-header">
+                                <i class="fas fa-user-check"></i> Asignados
+                            </div>
+                            <div class="picklist-body scrollable-custom picklist-h-300" id="editAreaUsersSelectedList"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="selected_users" id="editSelectedAreaUsersInput">
+                </div>
+            </div>
+
+            <div class="modal-footer modal-footer-actions mt-2">
+                <button type="button" class="btn btn-ghost" id="btnEditBack" style="display: none;" data-action="areas-edit-step-back">Anterior</button>
+                <div class="flex-1"></div>
+                <button type="button" class="btn btn-primary btn-primary-filled" id="btnEditNext" data-action="areas-edit-step-next">Continuar <i class="fas fa-arrow-right ml-05"></i></button>
+                <button type="submit" class="btn btn-primary btn-primary-filled" id="btnEditSubmit" style="display: none;" data-action="areas-save-edited">Guardar Cambios <i class="fas fa-save ml-05"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script nonce="{{ csp_nonce() }}" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script nonce="{{ csp_nonce() }}">
+    var allAreasData = {{ areas_json|tojson|safe if areas_json else '[]' }};
+    window.__userData = {{ all_users_json|tojson|safe if all_users_json else '[]' }};
+</script>
+<script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/notifications.js') }}?v=1"></script>
+<script nonce="{{ csp_nonce() }}" src="{{ url_for('static', filename='js/areas.js') }}?v=2"></script>
+{% endblock %}

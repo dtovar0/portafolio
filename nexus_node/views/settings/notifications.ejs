@@ -1,0 +1,161 @@
+<div class="settings-page-container w-full" style="margin-inline: auto;">
+    <div class="settings-tabs d-flex gap-1 border-bottom-subtle">
+        <button class="settings-tab active" data-action="switch-tab" data-tab="smtpTab">
+            <i class="fas fa-paper-plane" style="font-size: 1.1rem;"></i> Configuración SMTP
+        </button>
+        <button class="settings-tab" data-action="switch-tab" data-tab="templateTab">
+            <i class="fas fa-file-alt" style="font-size: 1.1rem;"></i> Plantilla de Correo
+        </button>
+    </div>
+
+    <form id="notificationSettingsForm" class="settings-form" data-premium-validate novalidate>
+        <div id="smtpTab" class="tab-content active">
+            <div class="settings-card settings-card-box">
+                <div class="settings-section-header">
+                    <div class="d-flex justify-between items-center w-full">
+                        <h3 class="settings-title-lg">Servidor de Correo Saliente</h3>
+                        <div class="d-flex items-center gap-1">
+                            <button type="button" class="btn btn-action-test" data-action="send-test-prompt">
+                                <i class="fas fa-paper-plane"></i> Probar Envío
+                            </button>
+                            <div class="v-divider"></div>
+                            <button type="submit" class="btn btn-action-new" data-action="save-notifications" style="height: 42px; padding: 0 1.5rem;">
+                                <i class="fas fa-save" style="font-size: 1.1rem;"></i>
+                                <span>Guardar Cambios</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full">
+                    <div class="section-label"><i class="fas fa-server"></i> SERVIDOR SMTP</div>
+                    <div class="d-grid grid-2col gap-15">
+                        <div class="form-group"><label class="form-label">HOST</label><div class="input-with-icon"><i class="fas fa-server"></i><input type="text" name="smtp_host" class="form-control field-tech" value="<%= settings.smtp_host || '' %>" placeholder="smtp.gmail.com" required></div></div>
+                        <div class="d-grid grid-2col gap-15">
+                            <div class="form-group"><label class="form-label">PUERTO</label><div class="input-with-icon"><i class="fas fa-plug"></i><input type="number" name="smtp_port" class="form-control no-spin" value="<%= settings.smtp_port || '587' %>" min="1" max="65535" required></div></div>
+                            <div class="form-group">
+                                <label class="form-label">ENCRIPTACIÓN</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <select name="smtp_encryption" class="form-control">
+                                        <option value="NONE" <%= settings.smtp_encryption === 'NONE' ? 'selected' : '' %>>Ninguno</option>
+                                        <option value="SSL" <%= settings.smtp_encryption === 'SSL' ? 'selected' : '' %>>SSL</option>
+                                        <option value="SSLv2" <%= settings.smtp_encryption === 'SSLv2' ? 'selected' : '' %>>SSLv2</option>
+                                        <option value="SSLv3" <%= settings.smtp_encryption === 'SSLv3' ? 'selected' : '' %>>SSLv3</option>
+                                        <option value="STARTTLS" <%= settings.smtp_encryption === 'STARTTLS' || !settings.smtp_encryption ? 'selected' : '' %>>STARTTLS</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid grid-2col gap-15">
+                        <div class="settings-toggle-card">
+                            <div class="toggle-card-info"><label for="smtpAuthToggle">Requiere autenticación</label></div>
+                            <div class="toggle-card-action">
+                                <label class="toggle-switch-ios">
+                                    <input type="checkbox" id="smtpAuthToggle" name="smtp_auth" <%= settings.smtp_auth ? 'checked' : '' %>>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="section-label mt-2"><i class="fas fa-user-shield"></i> CREDENCIALES DE ACCESO</div>
+                    <div id="credentialsGrid" class="d-grid grid-2col gap-15">
+                        <div class="form-group"><label class="form-label">USUARIO</label><div class="input-with-icon"><i class="fas fa-user"></i><input type="email" name="smtp_user" class="form-control field-tech" value="<%= settings.smtp_user || '' %>" placeholder="notificaciones@empresa.com"></div></div>
+                        <div class="form-group"><label class="form-label">CONTRASEÑA</label><div class="input-with-icon"><i class="fas fa-lock"></i><input type="password" name="smtp_password" class="form-control" placeholder="••••••••••••"></div></div>
+                    </div>
+
+                    <div class="section-label mt-2"><i class="fas fa-address-card"></i> REMITENTE</div>
+                    <div class="d-grid grid-2col gap-15">
+                        <div class="form-group"><label class="form-label">NOMBRE</label><div class="input-with-icon"><i class="fas fa-signature"></i><input type="text" name="smtp_from_name" class="form-control" value="<%= settings.smtp_from_name || '' %>" placeholder="Nexus Access"></div></div>
+                        <div class="form-group"><label class="form-label">CORREO REMITENTE</label><div class="input-with-icon"><i class="fas fa-envelope"></i><input type="email" name="smtp_from_email" class="form-control field-tech" value="<%= settings.smtp_from_email || '' %>" placeholder="no-reply@empresa.com"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="templateTab" class="tab-content d-none">
+            <div class="settings-card settings-card-box">
+                <div class="settings-section-header">
+                    <div class="d-flex justify-between items-center w-full">
+                        <h3 class="settings-title-lg">Cuerpo del Mensaje</h3>
+                        <button type="submit" class="btn btn-action-new" data-action="save-notifications" style="height: 42px; padding: 0 1.5rem;">
+                            <i class="fas fa-save" style="font-size: 1.1rem;"></i>
+                            <span>Guardar Cambios</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label class="modal-form-label">Asunto del Correo</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-heading"></i>
+                        <input type="text" name="email_subject" class="modal-form-input form-control" value="<%= settings.email_subject || 'Nueva Solicitud de Acceso - Portal Nexus' %>" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="modal-form-label">Contenido HTML / Texto</label>
+                    <textarea name="email_body" class="modal-form-textarea settings-editor" style="min-height: 250px;" required><%= settings.email_body || '' %></textarea>
+                </div>
+
+                <div class="mt-15 p-1 border-subtle rounded-lg" style="background: var(--bg-input);">
+                    <p class="fs-xs fw-700 mb-075" style="color: #64748b; text-transform: uppercase;">Variables Disponibles</p>
+                    <div class="d-flex flex-wrap gap-05">
+                        <span class="var-badge">{user_name}</span>
+                        <span class="var-badge">{platform_name}</span>
+                        <span class="var-badge">{status}</span>
+                        <span class="var-badge">{request_date}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="testEmailModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="testEmailTitle" aria-describedby="testEmailDescription" aria-hidden="true">
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h3 id="testEmailTitle" class="settings-title-md text-primary">Probar Configuración</h3>
+            <button type="button" class="btn-close-modal" aria-label="Cerrar modal" data-action="close-modal" data-target="testEmailModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <div class="p-1 mb-15 rounded-lg d-flex gap-1 items-center settings-info-banner" style="background: var(--accent-indigo-bg); color: var(--primary-color);">
+            <i class="fas fa-info-circle fs-lg"></i>
+            <p id="testEmailDescription" class="settings-helper-text fw-500 m-0">Se enviará un mensaje de prueba usando la configuración SMTP guardada actualmente.</p>
+        </div>
+
+        <form id="testEmailForm" data-premium-validate novalidate>
+            <div class="form-group">
+                <label class="modal-form-label">Correo Destinatario</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <input type="email" id="testEmailRecipient" class="modal-form-input form-control" placeholder="ejemplo@correo.com" required>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer d-flex justify-between mt-2">
+            <button type="button" class="btn btn-ghost" data-action="close-modal" data-target="testEmailModal">Cancelar</button>
+            <button type="button" class="btn btn-primary btn-primary-filled" data-action="submit-test-email">
+                <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Enviar Correo
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.__datos = {
+        urls: {
+            update: '/admin/update-notifications',
+            test: '/admin/test-email',
+            home: '/'
+        }
+    };
+</script>
+<script src="/static/js/notifications-page.js"></script>

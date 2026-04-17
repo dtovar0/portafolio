@@ -1,0 +1,50 @@
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-circle" style="background-color: <%= settings.portal_logo_bg %>;">
+            <% if (settings.portal_logo_type === 'icon') { %>
+                <i class="fas <%= settings.portal_icon %>" style="color: <%= settings.portal_icon_color %>;"></i>
+            <% } else if (settings.portal_logo_url) { %>
+                <img src="<%= settings.portal_logo_url %>" alt="Logo">
+            <% } else { %>
+                <i class="fas fa-cube" style="color: white;"></i>
+            <% } %>
+        </div>
+        <div class="logo-text">
+            <span class="nexus-title"><%= settings.portal_name %></span>
+            <span class="portal-badge">NODE CORE</span>
+        </div>
+        <button class="sidebar-collapse-btn" id="collapseBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+    </div>
+
+    <div class="sidebar-content">
+        <div class="sidebar-section-label">Principal</div>
+        <nav class="sidebar-nav">
+            <a href="/" class="nav-item <%= typeof title != 'undefined' && title.includes('Dashboard') ? 'active' : '' %>" data-tooltip="Dashboard">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="/platforms" class="nav-item <%= typeof title != 'undefined' && title.includes('Plataformas') ? 'active' : '' %>" data-tooltip="Plataformas">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Plataformas</span>
+            </a>
+            <a href="/areas" class="nav-item <%= typeof title != 'undefined' && title.includes('Áreas') ? 'active' : '' %>" data-tooltip="Áreas">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                <span>Áreas</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-section-label">Configuración</div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item disabled" data-tooltip="Ajustes">
+                <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span>Sistema</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="sidebar-footer">
+        <div class="version-tag">Build v1.0.0-Node</div>
+    </div>
+</aside>
