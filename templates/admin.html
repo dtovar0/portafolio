@@ -62,53 +62,57 @@
 <!-- Stats Widgets -->
 <div class="stats-grid">
     <div class="stat-card modern">
-        <div class="stat-header">
-            <span class="label">Total plataformas</span>
+        <div class="grid grid-cols-[36px_1fr_36px] items-center mb-4">
             <div class="stat-icon-box indigo">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
             </div>
+            <span class="label text-center">Total plataformas</span>
+            <div class="w-9"></div>
         </div>
-        <div class="value">{{ total or 0 }}</div>
-        <div class="stat-footer">
+        <div class="value text-center">{{ total or 0 }}</div>
+        <div class="stat-footer text-center">
             <span class="sub-label positive">+{{ platforms_new }} este mes</span>
         </div>
     </div>
 
     <div class="stat-card modern">
-        <div class="stat-header">
-            <span class="label">Áreas cubiertas</span>
+        <div class="grid grid-cols-[36px_1fr_36px] items-center mb-4">
             <div class="stat-icon-box green">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
             </div>
+            <span class="label text-center">Áreas cubiertas</span>
+            <div class="w-9"></div>
         </div>
-        <div class="value">{{ areas_count|length or 0 }}</div>
-        <div class="stat-footer">
+        <div class="value text-center">{{ areas_count|length or 0 }}</div>
+        <div class="stat-footer text-center">
             <span class="sub-label">De {{ areas_goal }} áreas totales</span>
         </div>
     </div>
 
     <div class="stat-card modern">
-        <div class="stat-header">
-            <span class="label">Solicitudes</span>
+        <div class="grid grid-cols-[36px_1fr_36px] items-center mb-4">
             <div class="stat-icon-box orange">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
             </div>
+            <span class="label text-center">Solicitudes</span>
+            <div class="w-9"></div>
         </div>
-        <div class="value">{{ pending or 0 }}</div>
-        <div class="stat-footer">
+        <div class="value text-center">{{ pending or 0 }}</div>
+        <div class="stat-footer text-center">
             <span class="sub-label warning">{{ priority_count }} de alta prioridad</span>
         </div>
     </div>
 
     <div class="stat-card modern">
-        <div class="stat-header">
-            <span class="label">Visitas este mes</span>
+        <div class="grid grid-cols-[36px_1fr_36px] items-center mb-4">
             <div class="stat-icon-box blue">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
             </div>
+            <span class="label text-center">Visitas este mes</span>
+            <div class="w-9"></div>
         </div>
-        <div class="value">{{ visits_total or 0 }}</div>
-        <div class="stat-footer">
+        <div class="value text-center">{{ visits_total or 0 }}</div>
+        <div class="stat-footer text-center">
             <span class="sub-label positive">{{ visits_up }} vs anterior</span>
         </div>
     </div>
