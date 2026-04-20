@@ -25,18 +25,11 @@
     
     <!-- General Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=50">
+    <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/components.css') }}">
     
     {% block extra_css %}{% endblock %}
-    <style>
-        :root {
-            --primary-color: {{ portal_settings.portal_logo_bg or '#6366f1' }};
-            --primary-hover: {{ portal_settings.portal_logo_bg or '#4f46e5' }};
-        }
-        [data-theme="dark"] {
-            --primary-color: #818cf8;
-            --primary-hover: #b4bcfe;
-        }
-    </style>
 </head>
 <body>
     <div class="app-container">
@@ -59,15 +52,15 @@
             <div class="sidebar-logo">
                 <div class="logo-icon">
                     {% if portal_settings.portal_logo_type == 'image' and portal_settings.portal_logo_url %}
-                        <img src="{{ portal_settings.portal_logo_url }}" style="width: 28px; height: 28px; object-fit: contain;">
+                        <img src="{{ portal_settings.portal_logo_url }}" class="logo-img">
                     {% elif portal_settings.portal_logo_type == 'icon' %}
-                        <i class="fas {{ portal_settings.portal_icon or 'fa-box' }}" style="font-size: 1.2rem; color: {{ portal_settings.portal_icon_color or '#ffffff' }};"></i>
+                        <i class="fas {{ portal_settings.portal_icon or 'fa-box' }} logo-icon-fa" style="color: {{ portal_settings.portal_icon_color or '#ffffff' }};"></i>
                     {% else %}
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{ portal_settings.portal_icon_color or '#ffffff' }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"></path><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"></path></svg>
                     {% endif %}
                 </div>
                 <div class="line-height-11">
-                    <span class="fw-700 d-block" style="font-size: 1.1rem;">{{ portal_settings.portal_name or 'Portal TI' }}</span>
+                    <span class="fw-700 d-block sidebar-title">{{ portal_settings.portal_name or 'Portal TI' }}</span>
                 </div>
             </div>
             
@@ -127,7 +120,7 @@
             <!-- User Widget -->
             <div class="user-widget">
                 <div class="user-profile-trigger" data-action="toggle-dropdown" data-target="userDropdown">
-                    <div class="avatar" style="background: var(--accent-indigo-bg); color: var(--primary-color);">
+                    <div class="avatar avatar-initials">
                         {% if current_user %}{{ current_user.name[:2].upper() }}{% else %}AD{% endif %}
                     </div>
                     <div class="user-info">
@@ -136,7 +129,7 @@
                     </div>
                 </div>
                 <div class="user-dropdown" id="userDropdown">
-                    <div class="border-bottom-subtle mb-05" style="padding: 0.5rem 0.75rem;">
+                    <div class="border-bottom-subtle mb-05 dropdown-header">
                         <span class="fs-xs text-muted d-block">Identificado como</span>
                         <span class="fs-sm fw-600">{% if current_user %}{{ current_user.email }}{% else %}admin@nexus.local{% endif %}</span>
                     </div>
@@ -187,19 +180,19 @@
     <!-- Global Confirmation Modal -->
     <div id="confirmModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage" aria-hidden="true">
         <div class="modal-content modal-sm text-center pos-relative" >
-            <button type="button" class="btn-close-modal pos-absolute" aria-label="Cerrar modal" data-action="close-modal" data-target="confirmModal" style="top: 1.5rem; right: 1.5rem;">
+            <button type="button" class="btn-close-modal pos-absolute modal-close-pos" aria-label="Cerrar modal" data-action="close-modal" data-target="confirmModal">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <div class="d-flex justify-center mb-15" style="color: #f43f5e;">
-                <div class="p-1 rounded-full" style="background: rgba(244, 63, 94, 0.1);">
+            <div class="d-flex justify-center mb-15 text-danger-custom">
+                <div class="p-1 rounded-full bg-danger-soft">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                 </div>
             </div>
             <h3 id="confirmTitle" class="font-outfit fs-xl fw-700 mb-075 text-primary">¿Estás seguro?</h3>
-            <p id="confirmMessage" class="text-muted mb-2" style="font-size: 0.95rem; line-height: 1.5;">Esta acción eliminará de forma permanente los registros seleccionados.</p>
+            <p id="confirmMessage" class="text-muted mb-2 fs-modal-body">Esta acción eliminará de forma permanente los registros seleccionados.</p>
             <div class="d-flex gap-1 justify-center">
-                <button class="btn btn-ghost" data-action="close-modal" data-target="confirmModal" style="min-width: 120px;">Cancelar</button>
-                <button id="confirmBtn" class="btn btn-primary fw-600" style="background: #f43f5e; color: white; border: none; min-width: 120px;">Confirmar</button>
+                <button class="btn btn-ghost min-w-120" data-action="close-modal" data-target="confirmModal">Cancelar</button>
+                <button id="confirmBtn" class="btn btn-primary fw-600 btn-danger min-w-120">Confirmar</button>
             </div>
         </div>
     </div>

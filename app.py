@@ -88,6 +88,12 @@ def create_app():
     app.register_blueprint(catalog_bp)
     app.register_blueprint(admin_bp)
 
+    # 6. Asset Serving (Framework standard)
+    @app.route('/assets/<path:filename>')
+    def serve_assets(filename):
+        from flask import send_from_directory
+        return send_from_directory(os.path.join(app.root_path, 'assets'), filename)
+
     return app
 
 if __name__ == '__main__':

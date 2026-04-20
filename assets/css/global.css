@@ -1,0 +1,62 @@
+/* Global Utilities & Variables */
+
+:root {
+    --primary-color: #6366f1; /* Default, overridden by app context if needed */
+    --primary-hover: #4f46e5;
+}
+
+[data-theme="dark"] {
+    --primary-color: #818cf8;
+    --primary-hover: #b4bcfe;
+}
+
+.logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.logo-icon-fa {
+    font-size: 1.2rem;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+}
+
+.avatar-initials {
+    background: var(--accent-indigo-bg);
+    color: var(--color-primary);
+}
+
+.dropdown-header {
+    padding: 0.5rem 0.75rem;
+}
+
+.modal-close-pos {
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.text-danger-custom {
+    color: #f43f5e;
+}
+
+.bg-danger-soft {
+    background: rgba(244, 63, 94, 0.1);
+}
+
+.fs-modal-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.min-w-120 {
+    min-width: 120px;
+}
+
+.btn-danger {
+    background: #f43f5e;
+    color: white;
+    border: none;
+}
