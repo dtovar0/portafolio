@@ -11,28 +11,62 @@ def index():
         user_id = g.user_id
         user = User.query.get(user_id)
         
+        # 1. KPI Statistics
         areas = Area.query.filter_by(status='Activo').all()
         platforms = Platform.query.filter_by(status='Activo').all()
         users_count = User.query.count()
-        pending_requests = AccessRequest.query.filter_by(status='Pendiente').count()
+        pending_requests = AccessRequest.query.filter_by(status='Pendiente').all()
+        visits_total = db.session.query(db.func.sum(Platform.visits)).scalar() or 0
         
-        # Filter platforms to those the user has access to
-        user_area_ids = [a.id for a in user.areas]
-        approved_reqs = AccessRequest.query.filter_by(user_id=user_id, status='Aprobado').all()
-        approved_platform_ids = [r.platform_id for r in approved_reqs]
-        
-        user_platforms = [p for p in platforms if p.area_id in user_area_ids or p.id in approved_platform_ids]
-        
-        # Recent activity
+        # 2. Activity Log
         from models import Auditoria
-        recent_activity = Auditoria.query.order_by(Auditoria.created_at.desc()).limit(10).all()
+        recent_activity = Auditoria.query.order_by(Auditoria.created_at.desc()).limit(15).all()
+
+        # 3. Chart Data: Users per Platform
+        users_platform_labels = []
+        users_platform_values = []
+        for p in platforms[:6]:
+            users_platform_labels.append(p.name)
+            # Count users with approved access + users in the area
+            count = AccessRequest.query.filter_by(platform_id=p.id, status='Aprobado').count()
+            users_platform_values.append(count)
+
+        # 4. Chart Data: Users per Area
+        users_area_labels = []
+        users_area_values = []
+        users_area_colors = []
+        for a in areas[:6]:
+            users_area_labels.append(a.name)
+            users_area_values.append(len(a.users))
+            users_area_colors.append(a.color)
+
+        # 5. Chart Data: Pending Requests per Platform
+        pending_map = {}
+        for pr in pending_requests:
+            p_name = pr.platform.name
+            pending_map[p_name] = pending_map.get(p_name, 0) + 1
+        
+        pending_platform_labels = list(pending_map.keys())
+        pending_platform_values = list(pending_map.values())
+
+        # 6. Chart Data: Most Visited
+        most_visited = Platform.query.order_by(Platform.visits.desc()).limit(5).all()
 
         return render_template('index.html', 
-                             areas=areas, 
-                             platforms=user_platforms,
-                             users_count=users_count,
-                             pending_requests=pending_requests,
-                             recent_activity=recent_activity)
+                             areas_count_num=len(areas),
+                             total=len(platforms),
+                             total_users=users_count,
+                             pending=len(pending_requests),
+                             visits_total=visits_total,
+                             log_list=recent_activity,
+                             users_platform_labels=users_platform_labels,
+                             users_platform_values=users_platform_values,
+                             users_area_labels=users_area_labels,
+                             users_area_values=users_area_values,
+                             users_area_colors=users_area_colors,
+                             pending_platform_labels=pending_platform_labels,
+                             pending_platform_values=pending_platform_values,
+                             most_visited=most_visited)
     except Exception as e:
         return f"Error loading dashboard: {str(e)}", 500
 

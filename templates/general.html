@@ -263,8 +263,8 @@
     window.__datos = {
         initialLogoUrl: {{ (settings.portal_logo_url or none) | tojson }},
         urls: {
-            updateGeneral: "{{ url_for('update_general_settings') }}",
-            testDb: "{{ url_for('test_db_connection') }}",
+            updateGeneral: "{{ url_for('admin.update_general_settings') }}",
+            testDb: "{{ url_for('admin.test_db_connection') }}",
             home: "{{ url_for('catalog.index') }}"
         }
     };

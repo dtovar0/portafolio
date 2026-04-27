@@ -4,7 +4,7 @@ import jwt
 from flask import Flask, g, request, redirect, url_for
 from flask_wtf.csrf import CSRFProtect
 from flask_talisman import Talisman
-from models import db, User
+from models import db, User, SystemSettings
 from utils_nexus import SecretManager
 
 # Blueprint Imports
@@ -80,8 +80,26 @@ def create_app():
                 pass
 
     @app.context_processor
-    def inject_user():
-        return dict(current_user=g.user)
+    def inject_globals():
+        from models import SystemSettings, AccessRequest
+        settings = SystemSettings.query.first() or SystemSettings()
+        # Default placeholder if no settings record exists yet
+        if not settings.id:
+            settings.portal_name = "Nexus Access"
+            
+        pending_count = 0
+        try:
+            pending_count = AccessRequest.query.filter_by(status='Pendiente').count()
+        except:
+            pass
+
+        from datetime import datetime
+        return dict(
+            current_user=g.user,
+            portal_settings=settings,
+            pending_requests_count=pending_count,
+            now=datetime.utcnow()
+        )
 
     # 5. Blueprints Registration
     app.register_blueprint(auth_bp)

@@ -110,7 +110,7 @@
             </div>
             <div class="pagination-controls d-flex gap-05">
                 <button data-action="navigate" 
-                        data-url="{{ url_for('audit_view', page=current_page-1) }}"
+                        data-url="{{ url_for('admin.audit_view', page=current_page-1) }}"
                         class="pagination-btn {% if current_page == 1 %}disabled{% endif %}"
                         {% if current_page == 1 %}disabled{% endif %}>
                     <i class="fas fa-chevron-left"></i> Anterior
@@ -121,7 +121,7 @@
                 </div>
                 
                 <button data-action="navigate" 
-                        data-url="{{ url_for('audit_view', page=current_page+1) }}"
+                        data-url="{{ url_for('admin.audit_view', page=current_page+1) }}"
                         class="pagination-btn {% if current_page == total_pages %}disabled{% endif %}"
                         {% if current_page == total_pages %}disabled{% endif %}>
                     Siguiente <i class="fas fa-chevron-right"></i>

@@ -109,7 +109,7 @@
         <div class="stat-card modern" style="padding: 1.25rem; height: 100%;">
             <div class="card-header border-none d-flex justify-between items-center mb-075">
                 <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Solicitudes Pendientes</h2>
-                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('requests_view') }}" data-tooltip="Más detalle">
+                <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('admin.requests_view') }}" data-tooltip="Más detalle">
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -139,7 +139,7 @@
                 <i class="fas fa-satellite-dish text-primary" style="font-size: 0.9rem; opacity: 0.8;"></i>
                 <h2 class="font-outfit fw-600" style="font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Monitoreo de Actividad</h2>
             </div>
-            <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('requests_view') }}" data-tooltip="Ver Auditoría">
+            <button class="btn-view-more" data-action="navigate" data-url="{{ url_for('admin.audit_view') }}" data-tooltip="Ver Auditoría">
                 <i class="fas fa-arrow-right"></i>
             </button>
         </div>

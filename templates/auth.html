@@ -148,8 +148,8 @@
 <script nonce="{{ csp_nonce() }}">
     window.__datos = {
         urls: {
-            update: "{{ url_for('update_auth_settings') }}",
-            test: "{{ url_for('test_ldap_connection') }}",
+            update: "{{ url_for('admin.update_auth_settings') }}",
+            test: "{{ url_for('admin.test_ldap_connection') }}",
             home: "{{ url_for('catalog.index') }}"
         }
     };
