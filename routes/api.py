@@ -776,3 +776,60 @@ def search():
         "platforms": [platform_payload(p) for p in platforms],
         "areas": [area_payload(a) for a in areas],
     })
+
+
+# --------------------------------------------------------------------------
+# Autenticación local (fallback cuando Authelia no está activo)
+#
+# Endpoints JSON para el frontend. El /login clásico de auth.py sigue
+# existiendo para las plantillas Jinja2 mientras se completa la migración.
+# --------------------------------------------------------------------------
+@api_bp.route('/auth/login', methods=['POST'])
+def api_login():
+    import jwt as _jwt
+    from datetime import timedelta
+    from flask import current_app, make_response
+    from werkzeug.security import check_password_hash
+
+    if not current_app.config.get('LOCAL_LOGIN_ENABLED', True):
+        return jsonify({"success": False,
+                        "error": "El acceso local está desactivado. Use el portal de autenticación."}), 403
+
+    data = request.get_json(silent=True) or {}
+    email = (data.get('email') or '').strip().lower()
+    password = data.get('password') or ''
+
+    if not email or not password:
+        return jsonify({"success": False, "error": "Correo y contraseña son obligatorios"}), 400
+
+    user = User.query.filter(func.lower(User.email) == email).first()
+    # Mismo mensaje para usuario inexistente y contraseña incorrecta: no
+    # revelamos qué correos existen.
+    if not user or not user.password_hash or not check_password_hash(user.password_hash, password):
+        return jsonify({"success": False, "error": "Credenciales inválidas"}), 401
+    if user.status != 'Activo':
+        return jsonify({"success": False, "error": "La cuenta está inactiva"}), 403
+
+    token = _jwt.encode({
+        'user_id': user.id,
+        'exp': datetime.utcnow() + timedelta(hours=24),
+    }, current_app.config['SECRET_KEY'], algorithm='HS256')
+
+    log_event('Sesión', user.email, 'Ingreso', f'{user.name} inició sesión', user_id=user.id)
+
+    resp = make_response(jsonify({
+        "success": True,
+        "user": {'id': user.id, 'name': user.name, 'email': user.email, 'role': user.role},
+    }))
+    resp.set_cookie('token', token, httponly=True, samesite='Lax', path='/')
+    return resp
+
+
+@api_bp.route('/auth/logout', methods=['POST'])
+def api_logout():
+    from flask import make_response
+    if g.user:
+        log_event('Sesión', g.user.email, 'Salida', f'{g.user.name} cerró sesión', user_id=g.user.id)
+    resp = make_response(jsonify({"success": True}))
+    resp.set_cookie('token', '', expires=0, path='/')
+    return resp
