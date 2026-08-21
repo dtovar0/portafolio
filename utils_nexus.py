@@ -40,7 +40,7 @@ def require_login(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         public_endpoints = ['auth.login', 'static', 'auth.web_installer']
-        user_endpoints = ['catalog.index', 'auth.logout', 'catalog.submit_request']
+        user_endpoints = ['catalog.index', 'catalog.view_catalog', 'catalog.register_visit', 'auth.logout', 'catalog.submit_request']
         
         # Identification is already done in app.before_request if we want to share g.user
         if not g.user:

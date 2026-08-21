@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, g
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for, g
 from models import db, Area, Platform, AccessRequest, User, log_event
 from utils_nexus import require_login
 
@@ -11,7 +11,11 @@ def index():
         user_id = g.user_id
         user = User.query.get(user_id)
         
-        # 1. KPI Statistics
+        # Redirección por Rol
+        if g.role == 'Usuario':
+            return redirect(url_for('catalog.view_catalog'))
+
+        # 1. KPI Statistics (Admin View)
         areas = Area.query.filter_by(status='Activo').all()
         platforms = Platform.query.filter_by(status='Activo').all()
         users_count = User.query.count()
@@ -27,7 +31,6 @@ def index():
         users_platform_values = []
         for p in platforms[:6]:
             users_platform_labels.append(p.name)
-            # Count users with approved access + users in the area
             count = AccessRequest.query.filter_by(platform_id=p.id, status='Aprobado').count()
             users_platform_values.append(count)
 
@@ -69,6 +72,45 @@ def index():
                              most_visited=most_visited)
     except Exception as e:
         return f"Error loading dashboard: {str(e)}", 500
+
+@catalog_bp.route('/view')
+@require_login
+def view_catalog():
+    try:
+        areas = Area.query.filter_by(status='Activo').all()
+        platforms = Platform.query.filter_by(status='Activo').all()
+        
+        # User platform access (approved requests + area membership)
+        user = User.query.get(g.user_id)
+        user_platform_ids = []
+        for p in platforms:
+            # Check if user has approved access
+            has_access = AccessRequest.query.filter_by(platform_id=p.id, user_id=user.id, status='Aprobado').first()
+            # Or if user belongs to the area of the platform (if area membership implies access)
+            is_in_area = user in p.area.users
+            if has_access or is_in_area:
+                user_platform_ids.append(p.id)
+
+        area_icons = {a.name: a.icon for a in areas}
+        
+        return render_template('catalog.html', 
+                             areas=areas, 
+                             platforms=platforms, 
+                             user_platform_ids=user_platform_ids,
+                             area_icons=area_icons)
+    except Exception as e:
+        return f"Error: {str(e)}", 500
+
+@catalog_bp.route('/visit/<int:id>', endpoint='register_visit')
+@require_login
+def register_visit(id):
+    try:
+        platform = Platform.query.get_or_404(id)
+        platform.visits += 1
+        db.session.commit()
+        return redirect(platform.direct_link or '#')
+    except:
+        return redirect(url_for('catalog.index'))
 
 @catalog_bp.route('/platforms')
 @require_login
