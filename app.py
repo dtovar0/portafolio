@@ -1,11 +1,11 @@
 import os
-import configparser
 import jwt
 from flask import Flask, g, request, redirect, url_for
 from flask_wtf.csrf import CSRFProtect
 from flask_talisman import Talisman
 from models import db, User, SystemSettings
 from utils_nexus import SecretManager
+from config_loader import Settings
 
 # Blueprint Imports
 from routes.auth import auth_bp
@@ -18,40 +18,31 @@ def create_app():
     csrf = CSRFProtect(app)
 
     # 1. Configuration Loading
-    config = configparser.ConfigParser()
-    config_path = os.path.join(os.path.dirname(__file__), 'config.conf')
-    
-    if os.path.exists(config_path):
-        config.read(config_path, encoding='utf-8')
-        DB_USER = config.get('DATABASE', 'DB_USER', fallback='root')
-        DB_PASS = config.get('DATABASE', 'DB_PASS', fallback='')
-        DB_HOST = config.get('DATABASE', 'DB_HOST', fallback='localhost')
-        DB_NAME = config.get('DATABASE', 'DB_NAME', fallback='nexus')
-        SECRET_KEY = config.get('SYSTEM', 'SECRET_KEY', fallback='dev-key-nexus-2026')
-        DEBUG_MODE = config.getboolean('SYSTEM', 'DEBUG', fallback=True)
-    else:
-        DB_USER, DB_PASS, DB_HOST, DB_NAME = 'root', '', 'localhost', 'nexus'
-        SECRET_KEY, DEBUG_MODE = 'dev-key-nexus-2026', True
+    # Precedencia: entorno > .env > config.conf > defaults.
+    # Ver config_loader.py.
+    settings = Settings()
+    DEBUG_MODE = settings.bool('DEBUG')
 
-    # NEXUS_DATABASE_URI permite apuntar a otra base (pruebas aisladas)
-    # sin tocar config.conf.
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-        'NEXUS_DATABASE_URI',
-        f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}'
-    )
+    app.config['SQLALCHEMY_DATABASE_URI'] = settings.database_uri()
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = SECRET_KEY
+    app.config['SECRET_KEY'] = settings.get('SECRET_KEY')
+    app.config['DEBUG'] = DEBUG_MODE
 
     # Authelia (forward-auth). Ver utils_authelia.py para las implicaciones
     # de seguridad de confiar en headers.
-    if os.path.exists(config_path):
-        app.config['AUTHELIA_ENABLED'] = config.getboolean('AUTHELIA', 'ENABLED', fallback=False)
-        app.config['AUTHELIA_TRUSTED_IPS'] = config.get('AUTHELIA', 'TRUSTED_IPS', fallback='')
-        app.config['LOCAL_LOGIN_ENABLED'] = config.getboolean('AUTHELIA', 'LOCAL_LOGIN_FALLBACK', fallback=True)
-    else:
-        app.config['AUTHELIA_ENABLED'] = False
-        app.config['AUTHELIA_TRUSTED_IPS'] = ''
-        app.config['LOCAL_LOGIN_ENABLED'] = True
+    app.config['AUTHELIA_ENABLED'] = settings.bool('AUTHELIA_ENABLED')
+    app.config['AUTHELIA_TRUSTED_IPS'] = settings.get('AUTHELIA_TRUSTED_IPS')
+    app.config['LOCAL_LOGIN_ENABLED'] = settings.bool('LOCAL_LOGIN_FALLBACK')
+
+    # Aviso en arranque: una clave de desarrollo en producción invalida
+    # todos los tokens firmados si cambia, y es adivinable.
+    if not DEBUG_MODE and app.config['SECRET_KEY'] == 'dev-key-nexus-2026':
+        import warnings
+        warnings.warn(
+            'SECRET_KEY tiene el valor por defecto de desarrollo. '
+            'Defina SECRET_KEY en .env antes de desplegar.',
+            RuntimeWarning
+        )
 
     # 2. Security Configuration (Talisman)
     Talisman(app, 
