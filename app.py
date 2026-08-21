@@ -11,6 +11,7 @@ from utils_nexus import SecretManager
 from routes.auth import auth_bp
 from routes.catalog import catalog_bp
 from routes.admin import admin_bp
+from routes.api import api_bp
 
 def create_app():
     app = Flask(__name__)
@@ -32,9 +33,25 @@ def create_app():
         DB_USER, DB_PASS, DB_HOST, DB_NAME = 'root', '', 'localhost', 'nexus'
         SECRET_KEY, DEBUG_MODE = 'dev-key-nexus-2026', True
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}'
+    # NEXUS_DATABASE_URI permite apuntar a otra base (pruebas aisladas)
+    # sin tocar config.conf.
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+        'NEXUS_DATABASE_URI',
+        f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}'
+    )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = SECRET_KEY
+
+    # Authelia (forward-auth). Ver utils_authelia.py para las implicaciones
+    # de seguridad de confiar en headers.
+    if os.path.exists(config_path):
+        app.config['AUTHELIA_ENABLED'] = config.getboolean('AUTHELIA', 'ENABLED', fallback=False)
+        app.config['AUTHELIA_TRUSTED_IPS'] = config.get('AUTHELIA', 'TRUSTED_IPS', fallback='')
+        app.config['LOCAL_LOGIN_ENABLED'] = config.getboolean('AUTHELIA', 'LOCAL_LOGIN_FALLBACK', fallback=True)
+    else:
+        app.config['AUTHELIA_ENABLED'] = False
+        app.config['AUTHELIA_TRUSTED_IPS'] = ''
+        app.config['LOCAL_LOGIN_ENABLED'] = True
 
     # 2. Security Configuration (Talisman)
     Talisman(app, 
@@ -66,17 +83,47 @@ def create_app():
     # 4. Request Hooks & Processors
     @app.before_request
     def load_user():
-        token = request.cookies.get('token')
         g.user = None
         g.user_id = None
         g.role = None
+        g.auth_source = None
+
+        # Precedencia 1: Authelia. Si el proxy de confianza inyecta una
+        # identidad válida, esa manda y se sincroniza el usuario local.
+        from utils_authelia import read_identity, sync_user
+        try:
+            identity = read_identity()
+        except Exception:
+            identity = None
+
+        if identity:
+            try:
+                user, _created = sync_user(identity)
+                g.user = user
+                g.user_id = user.id
+                g.role = user.role
+                g.auth_source = 'authelia'
+                return
+            except Exception:
+                db.session.rollback()
+
+        # Precedencia 2: JWT local (fallback). El rol se lee de la base, no
+        # del token, para que un cambio de permisos surta efecto de inmediato.
+        token = request.cookies.get('token')
         if token:
             try:
                 data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-                g.user_id = data.get('user_id')
-                g.role = data.get('role')
-                g.user = User.query.get(g.user_id)
-            except:
+                user = User.query.get(data.get('user_id'))
+                if user and user.status == 'Activo':
+                    g.user = user
+                    g.user_id = user.id
+                    g.role = user.role
+                    g.auth_source = 'local'
+            except jwt.ExpiredSignatureError:
+                pass
+            except jwt.InvalidTokenError:
+                pass
+            except Exception:
                 pass
 
     @app.context_processor
@@ -105,6 +152,11 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(catalog_bp)
     app.register_blueprint(admin_bp)
+    app.register_blueprint(api_bp)
+
+    # La API no usa formularios: la autenticación va por cookie JWT o por
+    # headers de Authelia, así que el token CSRF de Flask-WTF no aplica.
+    csrf.exempt(api_bp)
 
     # 6. Asset Serving (Framework standard)
     @app.route('/assets/<path:filename>')

@@ -9,3 +9,10 @@ config.conf
 .gemini/
 UI_GUIDE.md
 # === FIN GITIGNORE ===
+
+# === FRONTEND NEXT.JS ===
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/next-env.d.ts
